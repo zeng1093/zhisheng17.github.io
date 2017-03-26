@@ -170,13 +170,26 @@
     <article id="post-详细深入分析 Java ClassLoader 工作机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/26/详细深入分析 Java ClassLoader 工作机制/">详细深入分析 Java ClassLoader 工作机制</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/26/详细深入分析 Java ClassLoader 工作机制/" class="archive-article-date">
+  	<time datetime="2017-03-26T13:27:57.101Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="title-详细深入分析-Java-ClassLoader-工作机制"><a href="#title-详细深入分析-Java-ClassLoader-工作机制" class="headerlink" title="title:详细深入分析 Java ClassLoader 工作机制"></a>title:详细深入分析 Java ClassLoader 工作机制</h2><p>申明：本文首发于 <a href="http://blog.csdn.net/tzs_1041218129/article/details/57502614" target="_blank" rel="external">详细深入分析 ClassLoader 工作机制</a>  ，如有转载，注明原出处即可，谢谢配合。</p>
-<p>[TOC]</p>
+        <p>申明：本文首发于 <a href="http://blog.csdn.net/tzs_1041218129/article/details/57502614" target="_blank" rel="external">详细深入分析 ClassLoader 工作机制</a>  ，如有转载，注明原出处即可，谢谢配合。</p>
 <hr>
-<h2 id="详细深入分析-Java-ClassLoader-工作机制"><a href="#详细深入分析-Java-ClassLoader-工作机制" class="headerlink" title="详细深入分析 Java ClassLoader 工作机制"></a>详细深入分析 Java ClassLoader 工作机制</h2><h3 id="什么是-ClassLoader-？"><a href="#什么是-ClassLoader-？" class="headerlink" title="什么是 ClassLoader ？"></a>什么是 ClassLoader ？</h3><p>大家都知道，当我们写好一个 Java 程序之后，不是管是 C/S 还是 B/S 应用，都是由若干个 .class 文件组织而成的一个完整的 Java 应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的 class 文件当中，所以经常要从这个 class 文件中要调用另外一个 class 文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个 class 文件到内存当中的，从而只有 class 文件被载入到了内存之后，才能被其它 class 所引用。所以 ClassLoader 就是用来动态加载 class 文件到内存当中用的。</p>
+<h3 id="什么是-ClassLoader-？"><a href="#什么是-ClassLoader-？" class="headerlink" title="什么是 ClassLoader ？"></a>什么是 ClassLoader ？</h3><p>大家都知道，当我们写好一个 Java 程序之后，不是管是 C/S 还是 B/S 应用，都是由若干个 .class 文件组织而成的一个完整的 Java 应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的 class 文件当中，所以经常要从这个 class 文件中要调用另外一个 class 文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个 class 文件到内存当中的，从而只有 class 文件被载入到了内存之后，才能被其它 class 所引用。所以 ClassLoader 就是用来动态加载 class 文件到内存当中用的。</p>
 <h3 id="ClassLoader-作用："><a href="#ClassLoader-作用：" class="headerlink" title="ClassLoader 作用："></a>ClassLoader 作用：</h3><ul>
 <li>负责将 Class 加载到 JVM 中</li>
 <li>审查每个类由谁加载（父优先的等级加载机制）</li>
