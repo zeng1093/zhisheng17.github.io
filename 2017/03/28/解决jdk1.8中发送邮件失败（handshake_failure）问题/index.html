@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Zhisheng的博客</title>
+  <title>解决jdk1.8中发送邮件失败（handshake_failure）问题 | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：
 
 发送邮件失败Mail server connection failed;    nested excep">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zhisheng的博客">
+<meta property="og:title" content="解决jdk1.8中发送邮件失败（handshake_failure）问题">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/解决jdk1.8中发送邮件失败（handshake_failure）问题/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
 <meta property="og:description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：
@@ -25,9 +25,9 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160812215943627">
 <meta property="og:image" content="http://img.blog.csdn.net/20160812220046041">
 <meta property="og:image" content="http://img.blog.csdn.net/20160812222233971">
-<meta property="og:updated_time" content="2017-03-28T11:00:48.521Z">
+<meta property="og:updated_time" content="2017-03-28T11:30:02.467Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhisheng的博客">
+<meta name="twitter:title" content="解决jdk1.8中发送邮件失败（handshake_failure）问题">
 <meta name="twitter:description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：
 
 发送邮件失败Mail server connection failed;    nested excep">
@@ -174,6 +174,21 @@
             <article id="post-解决jdk1.8中发送邮件失败（handshake_failure）问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解决jdk1.8中发送邮件失败（handshake_failure）问题
+    </h1>
+  
+
+        
+        <a href="/2017/03/28/解决jdk1.8中发送邮件失败（handshake_failure）问题/" class="archive-article-date">
+  	<time datetime="2017-03-28T11:00:47.293Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <p>暑假在家做一个类似知乎的问答型网站（代码可见：<a href="https://github.com/1041218129/wenda" target="_blank" rel="external">Github/wenda</a>  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个<strong>站内邮件通知系统</strong>（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：</p>
@@ -183,6 +198,7 @@
 <p>nested exception is:  <strong>javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</strong></p>
 </blockquote>
 <p>自己在将错误信息代码google了一下，找了很久发现很多解决方案，包括stackoverflow上的一些解决方案，但还是没用。然后呢用百度试了下，结果在第一条是开源中国的一篇博客:<a href="http://www.oschina.net/question/2282830_247657" target="_blank" rel="external">javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</a>。<br><img src="http://img.blog.csdn.net/20160812214234823" alt="百度出来的结果"></p>
+<a id="more"></a>
 <p>点进去是这样的：（如下图）<br><img src="http://img.blog.csdn.net/20160812214501830" alt="开源中国"></p>
 <p><img src="http://img.blog.csdn.net/20160812214625234" alt="正确解决方式"></p>
 <p>结果就是：这个问题是jdk导致的，jdk1.8里面有一个jce的包，安全性机制导致的访问https会报错，官网上有替代的jar包，如果替换掉就可以了。问题的解决方法还可以就是在整个项目中把你的jdk换成是1.7去，同样也可以解决这个我问题。</p>
@@ -249,6 +265,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">邮件发送</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -528,6 +559,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">邮件发送</a>
               </li>
             
             <div class="clearfix"></div>
