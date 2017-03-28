@@ -9,33 +9,42 @@
   <title>通过项目逐步深入了解Spring MVC（一） | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="相关阅读：本文档和项目代码地址：https://github.com/zhisheng17/springmvc
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。转载请注明出处和保留以上文字！
 
 了解 Spring：
 Spring 官网：http://spring.io/
-一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是">
+一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是看官方文档。
+
+Spring MVC基础知识什么是Spring MVC？
+Spring MVC框架原理（掌握）
+​    前端控制器、处理器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过项目逐步深入了解Spring MVC（一）">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/通过项目逐步深入了解Spring MVC（一）/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
 <meta property="og:description" content="相关阅读：本文档和项目代码地址：https://github.com/zhisheng17/springmvc
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。转载请注明出处和保留以上文字！
 
 了解 Spring：
 Spring 官网：http://spring.io/
-一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是">
+一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是看官方文档。
+
+Spring MVC基础知识什么是Spring MVC？
+Spring MVC框架原理（掌握）
+​    前端控制器、处理器">
 <meta property="og:image" content="http://img.blog.csdn.net/20161219214558360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20161219214629187?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20161219214646359?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-03-28T11:13:16.332Z">
+<meta property="og:updated_time" content="2017-03-28T11:47:32.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Spring MVC（一）">
 <meta name="twitter:description" content="相关阅读：本文档和项目代码地址：https://github.com/zhisheng17/springmvc
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。转载请注明出处和保留以上文字！
 
 了解 Spring：
 Spring 官网：http://spring.io/
-一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是">
+一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是看官方文档。
+
+Spring MVC基础知识什么是Spring MVC？
+Spring MVC框架原理（掌握）
+​    前端控制器、处理器">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20161219214558360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
@@ -197,7 +206,6 @@ Spring 官网：http://spring.io/
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="相关阅读："><a href="#相关阅读：" class="headerlink" title="相关阅读："></a>相关阅读：</h3><p>本文档和项目代码地址：<a href="https://github.com/zhisheng17/springmvc" target="_blank" rel="external">https://github.com/zhisheng17/springmvc</a></p>
-<h3 id="如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。"><a href="#如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。" class="headerlink" title="如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。"></a>如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。</h3><p>转载请注明出处和保留以上文字！</p>
 <hr>
 <p>了解 Spring：</p>
 <p>Spring 官网：<a href="http://spring.io/" target="_blank" rel="external">http://spring.io/</a></p>
