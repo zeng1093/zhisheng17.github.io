@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160812215943627">
 <meta property="og:image" content="http://img.blog.csdn.net/20160812220046041">
 <meta property="og:image" content="http://img.blog.csdn.net/20160812222233971">
-<meta property="og:updated_time" content="2017-03-28T11:30:02.467Z">
+<meta property="og:updated_time" content="2017-03-28T11:32:54.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决jdk1.8中发送邮件失败（handshake_failure）问题">
 <meta name="twitter:description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：
@@ -193,12 +193,10 @@
       
         <p>暑假在家做一个类似知乎的问答型网站（代码可见：<a href="https://github.com/1041218129/wenda" target="_blank" rel="external">Github/wenda</a>  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个<strong>站内邮件通知系统</strong>（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：</p>
 <blockquote>
-<p>发送邮件失败Mail server connection failed;    nested exception is javax.mail.MessagingException:     Could not connect to SMTP host: smtp.qq.com, port: 465;</p>
-<p>nested exception is:   javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure. Failed messages: javax.mail.  MessagingException: Could not connect to SMTP   host: smtp.qq.com,  port: 465;</p>
-<p>nested exception is:  <strong>javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</strong></p>
+<p>发送邮件失败Mail server connection failed;    nested exception is javax.mail.MessagingException:     Could not connect to SMTP host: smtp.qq.com, port: 465;<br>nested exception is:   javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure. Failed messages: javax.mail.  MessagingException: Could not connect to SMTP   host: smtp.qq.com,  port: 465;<br>nested exception is:  <strong>javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</strong></p>
 </blockquote>
-<p>自己在将错误信息代码google了一下，找了很久发现很多解决方案，包括stackoverflow上的一些解决方案，但还是没用。然后呢用百度试了下，结果在第一条是开源中国的一篇博客:<a href="http://www.oschina.net/question/2282830_247657" target="_blank" rel="external">javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</a>。<br><img src="http://img.blog.csdn.net/20160812214234823" alt="百度出来的结果"></p>
 <a id="more"></a>
+<p>自己在将错误信息代码google了一下，找了很久发现很多解决方案，包括stackoverflow上的一些解决方案，但还是没用。然后呢用百度试了下，结果在第一条是开源中国的一篇博客:<a href="http://www.oschina.net/question/2282830_247657" target="_blank" rel="external">javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure</a>。<br><img src="http://img.blog.csdn.net/20160812214234823" alt="百度出来的结果"></p>
 <p>点进去是这样的：（如下图）<br><img src="http://img.blog.csdn.net/20160812214501830" alt="开源中国"></p>
 <p><img src="http://img.blog.csdn.net/20160812214625234" alt="正确解决方式"></p>
 <p>结果就是：这个问题是jdk导致的，jdk1.8里面有一个jce的包，安全性机制导致的访问https会报错，官网上有替代的jar包，如果替换掉就可以了。问题的解决方法还可以就是在整个项目中把你的jdk换成是1.7去，同样也可以解决这个我问题。</p>
