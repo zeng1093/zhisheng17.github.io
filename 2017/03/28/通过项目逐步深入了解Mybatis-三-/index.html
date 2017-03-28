@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>通过项目逐步深入了解Mybatis（三） | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="####相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
+  <meta name="description" content="相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
 2、 通过项目逐步深入了解Mybatis&amp;lt;二&amp;gt;
 本项目所有代码及文档都托管在 Github地址：https://github.com/zhisheng17/mybatis
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。Mybatis 高级知识安排：对">
+Mybatis 高级知识安排：对订单商品数据模型进行分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过项目逐步深入了解Mybatis（三）">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/通过项目逐步深入了解Mybatis-三-/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
-<meta property="og:description" content="####相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
+<meta property="og:description" content="相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
 2、 通过项目逐步深入了解Mybatis&amp;lt;二&amp;gt;
 本项目所有代码及文档都托管在 Github地址：https://github.com/zhisheng17/mybatis
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。Mybatis 高级知识安排：对">
+Mybatis 高级知识安排：对订单商品数据模型进行分析">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/sql.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/sqlmodel.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test9.jpg">
@@ -27,13 +27,13 @@
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test11.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test12.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test13.jpg">
-<meta property="og:updated_time" content="2017-03-28T11:18:24.930Z">
+<meta property="og:updated_time" content="2017-03-28T11:43:55.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Mybatis（三）">
-<meta name="twitter:description" content="####相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
+<meta name="twitter:description" content="相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
 2、 通过项目逐步深入了解Mybatis&amp;lt;二&amp;gt;
 本项目所有代码及文档都托管在 Github地址：https://github.com/zhisheng17/mybatis
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。Mybatis 高级知识安排：对">
+Mybatis 高级知识安排：对订单商品数据模型进行分析">
 <meta name="twitter:image" content="http://ohfk1r827.bkt.clouddn.com/sql.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
@@ -194,15 +194,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####相关阅读：<br>1、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53404326" target="_blank" rel="external">通过项目逐步深入了解Mybatis&lt;一&gt;</a></p>
+        <p>相关阅读：<br>1、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53404326" target="_blank" rel="external">通过项目逐步深入了解Mybatis&lt;一&gt;</a></p>
 <p>2、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53449052" target="_blank" rel="external"> 通过项目逐步深入了解Mybatis&lt;二&gt;</a></p>
 <p>本项目所有代码及文档都托管在 Github地址：<a href="https://github.com/zhisheng17/mybatis" target="_blank" rel="external">https://github.com/zhisheng17/mybatis</a></p>
-<h3 id="如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。"><a href="#如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。" class="headerlink" title="如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。"></a>如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。</h3><h2 id="Mybatis-高级知识"><a href="#Mybatis-高级知识" class="headerlink" title="Mybatis 高级知识"></a>Mybatis 高级知识</h2><p>安排：对订单商品数据模型进行分析</p>
-<h2 id="订单商品数据模型"><a href="#订单商品数据模型" class="headerlink" title="订单商品数据模型"></a>订单商品数据模型</h2><p><img src="http://ohfk1r827.bkt.clouddn.com/sql.jpg" alt=""></p>
+<h2 id="Mybatis-高级知识"><a href="#Mybatis-高级知识" class="headerlink" title="Mybatis 高级知识"></a>Mybatis 高级知识</h2><p>安排：对订单商品数据模型进行分析</p>
+<a id="more"></a>
+<h3 id="订单商品数据模型"><a href="#订单商品数据模型" class="headerlink" title="订单商品数据模型"></a>订单商品数据模型</h3><p><img src="http://ohfk1r827.bkt.clouddn.com/sql.jpg" alt=""></p>
 <h3 id="数据模型分析思路："><a href="#数据模型分析思路：" class="headerlink" title="数据模型分析思路："></a>数据模型分析思路：</h3><p>1、每张表记录的数据内容（分模块对每张表记录的内容进行熟悉，相当于学习系统需求的过程）</p>
 <p>2、每张表重要的的字段设置（非空字段、外键字段）</p>
 <p>3、数据库级别表与表之间的关系（外键关系）</p>
-<p>4、表与表业务之间的关系（要建立在每个业务意义的基础上去分析）<br><a id="more"></a></p>
+<p>4、表与表业务之间的关系（要建立在每个业务意义的基础上去分析）</p>
 <h3 id="数据模型分析模型"><a href="#数据模型分析模型" class="headerlink" title="数据模型分析模型"></a>数据模型分析模型</h3><ul>
 <li>用户表 user：记录购买商品的用户信息</li>
 <li>订单表 order：记录用户所创建的订单(购买商品的订单)</li>
@@ -723,6 +724,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">邮件发送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github Page</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客网站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
             
             <div class="clearfix"></div>

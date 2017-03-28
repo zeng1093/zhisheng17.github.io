@@ -9,21 +9,19 @@
   <title>通过项目逐步深入了解Mybatis（二） | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="转载请务必注明出处，原创不易！
-####相关文章：通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
-####本项目全部代码地址：Github-Mybatis
+ 相关文章：通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;本项目全部代码地址：Github-Mybatis
 Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。
 解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。
-2、">
+2、  Sql语句写在代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过项目逐步深入了解Mybatis（二）">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/通过项目逐步深入了解Mybatis-二-/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
 <meta property="og:description" content="转载请务必注明出处，原创不易！
-####相关文章：通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
-####本项目全部代码地址：Github-Mybatis
+ 相关文章：通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;本项目全部代码地址：Github-Mybatis
 Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。
 解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。
-2、">
+2、  Sql语句写在代">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/dao%E5%BC%80%E5%8F%91.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/mapper%E5%BC%80%E5%8F%91.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/mapper%E5%BC%80%E5%8F%912.jpg">
@@ -34,15 +32,14 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test6.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test7.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test8.jpg">
-<meta property="og:updated_time" content="2017-03-28T11:17:18.180Z">
+<meta property="og:updated_time" content="2017-03-28T11:42:50.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Mybatis（二）">
 <meta name="twitter:description" content="转载请务必注明出处，原创不易！
-####相关文章：通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
-####本项目全部代码地址：Github-Mybatis
+ 相关文章：通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;本项目全部代码地址：Github-Mybatis
 Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。
 解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。
-2、">
+2、  Sql语句写在代">
 <meta name="twitter:image" content="http://ohfk1r827.bkt.clouddn.com/dao%E5%BC%80%E5%8F%91.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
@@ -204,8 +201,7 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
     <div class="article-entry" itemprop="articleBody">
       
         <p>转载请务必注明出处，原创不易！</p>
-<p>####相关文章：<a href="http://blog.csdn.net/tzs_1041218129/article/details/53404326" target="_blank" rel="external"><strong>通过项目逐步深入了解Mybatis&lt;一&gt;</strong></a></p>
-<p>####本项目全部代码地址：<a href="https://github.com/zhisheng17/mybatis" target="_blank" rel="external"><strong>Github-Mybatis</strong></a></p>
+<p> 相关文章：<a href="http://blog.csdn.net/tzs_1041218129/article/details/53404326" target="_blank" rel="external"><strong>通过项目逐步深入了解Mybatis&lt;一&gt;</strong></a><br>本项目全部代码地址：<a href="https://github.com/zhisheng17/mybatis" target="_blank" rel="external"><strong>Github-Mybatis</strong></a></p>
 <h3 id="Mybatis-解决-jdbc-编程的问题"><a href="#Mybatis-解决-jdbc-编程的问题" class="headerlink" title="Mybatis 解决 jdbc 编程的问题"></a>Mybatis 解决 jdbc 编程的问题</h3><p>1、  数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库链接池可解决此问题。</p>
 <p>解决：在SqlMapConfig.xml中配置数据链接池，使用连接池管理数据库链接。</p>
 <p>2、  Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。</p>
@@ -1035,6 +1031,18 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">邮件发送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github Page</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客网站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
             
             <div class="clearfix"></div>

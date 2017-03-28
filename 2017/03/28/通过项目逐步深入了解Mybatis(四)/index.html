@@ -8,20 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>通过项目逐步深入了解Mybatis（四） | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
+  <meta name="description" content="相关阅读：
+1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
 2、通过项目逐步深入了解Mybatis&amp;lt;二&amp;gt;
 3、通过项目逐步深入了解Mybatis&amp;lt;三&amp;gt;
 本项目所有代码及文档都托管在 Github地址：https://github.com/zhisheng17/mybatis
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修">
+延迟加载什么是延迟加载？resultMap可以实现高级映射（使用association、c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过项目逐步深入了解Mybatis（四）">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/通过项目逐步深入了解Mybatis(四)/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
-<meta property="og:description" content="相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
+<meta property="og:description" content="相关阅读：
+1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
 2、通过项目逐步深入了解Mybatis&amp;lt;二&amp;gt;
 3、通过项目逐步深入了解Mybatis&amp;lt;三&amp;gt;
 本项目所有代码及文档都托管在 Github地址：https://github.com/zhisheng17/mybatis
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修">
+延迟加载什么是延迟加载？resultMap可以实现高级映射（使用association、c">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test14.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/cache.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/cache1.jpg">
@@ -31,14 +33,15 @@
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test17.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/eheache.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test18.jpg">
-<meta property="og:updated_time" content="2017-03-28T11:18:57.857Z">
+<meta property="og:updated_time" content="2017-03-28T11:44:23.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Mybatis（四）">
-<meta name="twitter:description" content="相关阅读：1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
+<meta name="twitter:description" content="相关阅读：
+1、通过项目逐步深入了解Mybatis&amp;lt;一&amp;gt;
 2、通过项目逐步深入了解Mybatis&amp;lt;二&amp;gt;
 3、通过项目逐步深入了解Mybatis&amp;lt;三&amp;gt;
 本项目所有代码及文档都托管在 Github地址：https://github.com/zhisheng17/mybatis
-如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修">
+延迟加载什么是延迟加载？resultMap可以实现高级映射（使用association、c">
 <meta name="twitter:image" content="http://ohfk1r827.bkt.clouddn.com/Test14.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
@@ -199,11 +202,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="相关阅读："><a href="#相关阅读：" class="headerlink" title="相关阅读："></a>相关阅读：</h4><p>1、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53404326" target="_blank" rel="external">通过项目逐步深入了解Mybatis&lt;一&gt;</a></p>
+        <p>相关阅读：</p>
+<p>1、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53404326" target="_blank" rel="external">通过项目逐步深入了解Mybatis&lt;一&gt;</a></p>
 <p>2、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53449052" target="_blank" rel="external">通过项目逐步深入了解Mybatis&lt;二&gt;</a></p>
 <p>3、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53456677" target="_blank" rel="external">通过项目逐步深入了解Mybatis&lt;三&gt;</a></p>
 <p>本项目所有代码及文档都托管在 Github地址：<a href="https://github.com/zhisheng17/mybatis" target="_blank" rel="external">https://github.com/zhisheng17/mybatis</a></p>
-<h3 id="如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。"><a href="#如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。" class="headerlink" title="如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。"></a>如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。</h3><h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><h3 id="什么是延迟加载？"><a href="#什么是延迟加载？" class="headerlink" title="什么是延迟加载？"></a>什么是延迟加载？</h3><p>resultMap可以实现高级映射（使用association、collection实现一对一及一对多映射），association、collection具备延迟加载功能。<br>需求：<br>如果查询订单并且关联查询用户信息。如果先查询订单信息即可满足要求，当我们需要查询用户信息时再查询用户信息。把对用户信息的按需去查询就是延迟加载。</p>
+<h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3><h3 id="什么是延迟加载？"><a href="#什么是延迟加载？" class="headerlink" title="什么是延迟加载？"></a>什么是延迟加载？</h3><p>resultMap可以实现高级映射（使用association、collection实现一对一及一对多映射），association、collection具备延迟加载功能。<br>需求：<br>如果查询订单并且关联查询用户信息。如果先查询订单信息即可满足要求，当我们需要查询用户信息时再查询用户信息。把对用户信息的按需去查询就是延迟加载。</p>
 <p>延迟加载：先从单表查询、需要时再从关联表去关联查询，大大提高 数据库性能，因为查询单表要比关联查询多张表速度要快。<br><a id="more"></a></p>
 <h3 id="打开延迟加载开关"><a href="#打开延迟加载开关" class="headerlink" title="打开延迟加载开关"></a>打开延迟加载开关</h3><p>在mybatis核心配置文件中配置：</p>
 <p>lazyLoadingEnabled、aggressiveLazyLoading</p>
@@ -761,6 +765,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">邮件发送</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Github Page</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客网站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
             
             <div class="clearfix"></div>
