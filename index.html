@@ -305,10 +305,24 @@
     <article id="post-Python爬虫实战之爬取糗事百科段子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/Python爬虫实战之爬取糗事百科段子/">Python爬虫实战之爬取糗事百科段子</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/28/Python爬虫实战之爬取糗事百科段子/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:59:16.278Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##Python爬虫实战之爬取糗事百科段子</p>
-<h3 id="完整代码地址：Python爬虫实战之爬取糗事百科段子"><a href="#完整代码地址：Python爬虫实战之爬取糗事百科段子" class="headerlink" title="完整代码地址：Python爬虫实战之爬取糗事百科段子"></a>完整代码地址：<a href="https://github.com/zhisheng17/Python-Projects/tree/master/qiushibaike" target="_blank" rel="external">Python爬虫实战之爬取糗事百科段子</a></h3><h3 id="程序代码详解："><a href="#程序代码详解：" class="headerlink" title="程序代码详解："></a><strong>程序代码详解：</strong></h3><ol>
+        <h3 id="完整代码地址：Python爬虫实战之爬取糗事百科段子"><a href="#完整代码地址：Python爬虫实战之爬取糗事百科段子" class="headerlink" title="完整代码地址：Python爬虫实战之爬取糗事百科段子"></a>完整代码地址：<a href="https://github.com/zhisheng17/Python-Projects/tree/master/qiushibaike">Python爬虫实战之爬取糗事百科段子</a></h3><h3 id="程序代码详解："><a href="#程序代码详解：" class="headerlink" title="程序代码详解："></a><strong>程序代码详解：</strong></h3><ol>
 <li><p><strong>Spider1-qiushibaike.py</strong>：爬取糗事百科的8小时最新页的段子。包含的信息有作者名称，觉得好笑人数，评论人数，发布的内容。如果发布的内容中含有图片的话，则过滤图片，内容依然显示出来。</p>
 </li>
 <li><p><strong>Spider2-qiushibaike.py</strong>：在Spider1-qiushibaike.py基础上，引入类和方法，进行优化和封装，爬取糗事百科的24小时热门页的段子。进一步优化，每按一次回车更新一条内容，当前页的内容抓取完毕后，自动抓取下一页的内容，按‘q’退出。</p>
@@ -316,284 +330,9 @@
 <li><p><strong>Spider3-qiushibaike.py</strong>：在Spiders-qiushibaike.py基础上，爬取了百科段子的评论。按C查看当前这个糗事的评论，当切换到查看评论时，换回车显示下一个评论,按Q退出回到查看糗事。糗事段子页数是一页一页加载的，如果你已经看完所有的糗事，就会自动退出！</p>
 </li>
 </ol>
-<h3 id="本爬虫目标："><a href="#本爬虫目标：" class="headerlink" title="本爬虫目标："></a><strong>本爬虫目标：</strong></h3><pre><code>1. 抓取糗事百科热门段子
-2. 过滤带有图片的段子
-3. 实现每按一次回车显示一个段子的发布时间，发布人，段子内容，点赞数，评论人数。
-</code></pre><p>糗事百科是不需要登录的，所以也没必要用到Cookie，另外糗事百科有的段子是附图的，我们把图抓下来图片不便于显示，那么我们就尝试过滤掉有图的段子吧。</p>
-<p>好，现在我们尝试抓取一下糗事百科的热门段子吧，每按下一次回车我们显示一个段子。</p>
-<h3 id="1-确定URL并抓取页面代码"><a href="#1-确定URL并抓取页面代码" class="headerlink" title="1.确定URL并抓取页面代码"></a><strong>1.确定URL并抓取页面代码</strong></h3><p>首先我们确定好页面的URL是 <a href="http://www.qiushibaike.com/hot/page/1" target="_blank" rel="external">http://www.qiushibaike.com/hot/page/1</a>，其中最后一个数字1代表页数，我们可以传入不同的值来获得某一页的段子内容。</p>
-<h3 id="2-提取某一页的所有段子"><a href="#2-提取某一页的所有段子" class="headerlink" title="2.提取某一页的所有段子"></a><strong>2.提取某一页的所有段子</strong></h3><p>好，获取了HTML代码之后，我们开始分析怎样获取某一页的所有段子。</p>
-<p>首先我们审查元素看一下，按浏览器的F12，截图如下:</p>
-<p><img src="http://img.blog.csdn.net/20160825154604645" alt="这里写图片描述"></p>
-<p>我们可以看到，每一个段子都是<figure class="highlight plain"><figcaption><span>class=”article block untagged mb15″ id=”…”>…```包裹的内容。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">现在我们想获取发布人，发布日期，段子内容，点赞人数和评论人数。不过另外注意的是，段子有些是带图片的，如果我们想在控制台显示图片是不现实的，所以我们直接把带有图片的段子给它剔除掉，只保存仅含文本的段子。</div><div class="line"></div><div class="line">所以我们加入如下正则表达式来匹配一下，用到的方法是 re.findall 是找寻所有匹配的内容。方法的用法详情可以看前面说的正则表达式的介绍。</div><div class="line"></div><div class="line">好，我们的正则表达式匹配语句书写如下，在原来的基础上追加如下代码：</div></pre></td></tr></table></figure></p>
-<p>#正则表达式匹配<br>    pattern = re.compile(‘<div.*?author.*?>.<em>?&lt;img.</em>?&gt;.<em>?<h2>(.</h2></em>?).<em>?&lt;div.</em>?’+<br>                         ‘content”&gt;(.<em>?)(.</em>?)<div.*?class="number">(.<em>?).</em>?class=”number”&gt;(.*?)‘,re.S)<br>    items = re.findall(pattern,content)<br>    for item in items:<br>        haveImg = re.search(“img”,item[2])<br>        if not haveImg:<br>            print item[0],item[3],item[4],item[1]</div.*?class="number"></div.*?author.*?></p>
-<pre><code>#item[0]是作者名称  item[3]好笑人数 item[4]评论人数  item[1]内容  item[2]是内容后面的东西，如果含有图片，过滤掉
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">现在正则表达式在这里稍作说明</div><div class="line"></div><div class="line">1）```.*? ```是一个固定的搭配，```.```和```*```代表可以匹配任意无限多个字符，加上```？```表示使用非贪婪模式进行匹配，也就是我们会尽可能短地做匹配，以后我们还会大量用到``` .*?``` 的搭配。</div><div class="line"></div><div class="line">2）```(.*?)```代表一个分组，在这个正则表达式中我们匹配了五个分组，在后面的遍历item中，item[0]就代表第一个```(.*?)```所指代的内容，item[1]就代表第二个```(.*?)```所指代的内容，以此类推。</div><div class="line"></div><div class="line">3）```re.S``` 标志代表在匹配时为点任意匹配模式，点 ```.``` 也可以代表换行符。</div><div class="line"></div><div class="line">这样我们就获取了发布人，发布时间，发布内容，附加图片以及点赞数。</div><div class="line"></div><div class="line">在这里注意一下，我们要获取的内容如果是带有图片，直接输出出来比较繁琐，所以这里我们只获取不带图片的段子就好了。</div><div class="line"></div><div class="line">所以，在这里我们就需要对带图片的段子进行过滤。</div><div class="line"></div><div class="line">我们可以发现，带有图片的段子会带有类似下面的代码，而不带图片的则没有，所以，我们的正则表达式的item[2]就是获取了下面的内容，如果不带图片，item[2]获取的内容便是空，所以我们只需要判断item[2]中是否含有img标签就可以了。</div><div class="line"></div><div class="line">**整体代码如下：**</div></pre></td></tr></table></figure>
-<p>#-<em>-coding:utf8-</em>-</p>
-<p>#created by 10412 2016/8/23</p>
-<p>#爬取糗事百科的8小时最新页的段子。包含的信息有作者名称，觉得好笑人数，评论人数，发布的内容。</p>
-<p>#如果发布的内容中含有图片的话，则过滤图片，内容依然显示出来。</p>
-<p>import urllib<br>import urllib2<br>import re</p>
-<p>#自定义输入爬取的页数<br>page = raw_input(“please enter the page number:”)<br>url = ‘<a href="http://www.qiushibaike.com/8hr/page/&#39;+" target="_blank" rel="external">http://www.qiushibaike.com/8hr/page/&#39;+</a> page +’/?s=4880477’</p>
-<p>user_agent = ‘Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)’<br>headers = { ‘User-Agent’ : user_agent }<br>try:<br>    request = urllib2.Request(url,headers = headers)<br>    response = urllib2.urlopen(request)<br>    content = response.read().decode(‘utf-8’)</p>
-<pre><code>#正则表达式匹配
-pattern = re.compile(&apos;&lt;div.*?author.*?&gt;.*?&lt;img.*?&gt;.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div.*?&apos;+
-                     &apos;content&quot;&gt;(.*?)&lt;/div&gt;(.*?)&lt;div.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)
-items = re.findall(pattern,content)
-for item in items:
-    haveImg = re.search(&quot;img&quot;,item[2])
-    if not haveImg:
-        print item[0],item[3],item[4],item[1]
-        #item[0]是作者名称  item[3]好笑人数 item[4]评论人数  item[1]内容  item[2]是内容后面的东西，如果含有图片，过滤掉
-</code></pre><p>except urllib2.URLError, e:<br>    if hasattr(e,”code”):<br>        print e.code<br>    if hasattr(e,”reason”):<br>        print e.reason<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">运行一下看下效果:</div><div class="line"></div><div class="line">![这里写图片描述](http://img.blog.csdn.net/20160825154628114)</div><div class="line"></div><div class="line">恩，带有图片的段子已经被剔除啦。</div><div class="line"></div><div class="line"></div><div class="line">### **3.完善交互，设计面向对象模式**</div><div class="line"></div><div class="line">好啦，现在最核心的部分我们已经完成啦，剩下的就是修一下边边角角的东西，我们想达到的目的是：</div><div class="line"></div><div class="line">按下回车，读取一个段子，显示出段子的发布人，内容，点赞个数及评论数量。</div><div class="line"></div><div class="line">另外我们需要设计面向对象模式，引入类和方法，将代码做一下优化和封装，最后，我们的代码如下所示</div></pre></td></tr></table></figure></p>
-<p>#-<em>-coding:utf8-</em>-</p>
-<p>#created by 10412</p>
-<h1 id="在Spider1-qiushibaike-py基础上，引入类和方法，进行优化和封装，爬取糗事百科的24小时热门页的段子。"><a href="#在Spider1-qiushibaike-py基础上，引入类和方法，进行优化和封装，爬取糗事百科的24小时热门页的段子。" class="headerlink" title="在Spider1-qiushibaike.py基础上，引入类和方法，进行优化和封装，爬取糗事百科的24小时热门页的段子。"></a>在Spider1-qiushibaike.py基础上，引入类和方法，进行优化和封装，爬取糗事百科的24小时热门页的段子。</h1><h1 id="进一步优化，每按一次回车更新一条内容，当前页的内容抓取完毕后，自动抓取下一页的内容，按‘q’退出。"><a href="#进一步优化，每按一次回车更新一条内容，当前页的内容抓取完毕后，自动抓取下一页的内容，按‘q’退出。" class="headerlink" title="进一步优化，每按一次回车更新一条内容，当前页的内容抓取完毕后，自动抓取下一页的内容，按‘q’退出。"></a>进一步优化，每按一次回车更新一条内容，当前页的内容抓取完毕后，自动抓取下一页的内容，按‘q’退出。</h1><p>import urllib2<br>import re</p>
-<p>class QSBK:<br>    def <strong>init</strong>(self):<br>        self.pageIndex = 1<br>        self.user_agent = ‘Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)’<br>        self.headers = {‘User-Agent’ : self.user_agent}<br>        self.stories = []</p>
-<pre><code>    # 存放程序是否继续运行的变量
-    self.enable = False
-
-# 传入某一页的索引获得页面代码
-def getPage(self, pageIndex):
-    try:
-        url = &apos;http://www.qiushibaike.com/hot/page/&apos; + str(pageIndex)
-        request = urllib2.Request(url, headers=self.headers)
-        response = urllib2.urlopen(request)
-        pageCode = response.read().decode(&apos;utf-8&apos;)
-        return pageCode
-    except urllib2.URLError, e:
-        if hasattr(e, &quot;reason&quot;):
-            print u&quot;连接糗事百科失败,错误原因&quot;, e.reason
-            return None
-
-# 传入某一页代码，返回本页不带图片的段子列表
-def getPageItems(self, pageIndex):
-    pageCode = self.getPage(pageIndex)
-    if not pageCode:
-        print u&quot;出错了&quot;
-        return None
-    pattern = re.compile(&apos;&lt;div class=&quot;author.*?href.*?&lt;img src.*?title=.*?&lt;h2&gt;(.*?)&lt;/h2&gt;.*?&lt;div class=&quot;content&quot;&gt;(.*?)&lt;/div&gt;.*?&lt;i class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;.*?class=&quot;number&quot;&gt;(.*?)&lt;/i&gt;&apos;,re.S)
-    items = re.findall(pattern, pageCode)
-    pageStories = []
-    for item in items:
-        replaceBR = re.compile(&apos;&lt;br/&gt;&apos;)
-        text = re.sub(replaceBR, &quot;\n&quot;, item [1] )
-        pageStories.append([item[0].strip(), text.strip(), item[2].strip(), item[3].strip()])
-    return pageStories
-
-# 加载并提取页面内容，加入到列表中
-def loadPage(self):
-    if self.enable == True:
-        if len(self.stories) &lt; 2:
-            # 获取新一页
-            pageStories = self.getPageItems(self.pageIndex)
-            if pageStories:
-                self.stories.append(pageStories)
-                self.pageIndex += 1
-
-# 调用该方法，回车打印一个段子
-def getOneStory(self, pageStories, page):
-    for story in pageStories:
-        input = raw_input()
-        self.loadPage()
-        if input == &quot;Q&quot;:
-            self.enable = False
-            return
-        print u&quot;第%d页\t发布人:%s\t赞:%s\t评论:%s\n%s&quot; %(page, story[0], story[2], story[2], story [1])
-
-# 开始方法
-def start(self):
-    print u&quot;正在读取糗事百科,按回车查看新段子，Q退出&quot;
-    # 使变量为True，程序可以正常运行
-    self.enable = True
-    # 先加载一页内容
-    self.loadPage()
-    # 局部变量，控制当前读到了第几页
-    nowPage = 0
-    while self.enable:
-        if len(self.stories) &gt; 0:
-            # 从全局list中获取一页的段子
-            pageStories = self.stories[0]
-            # 当前读到的页数加一
-            nowPage += 1
-            # 将全局list中第一个元素删除，因为已经取出
-            del self.stories[0]
-            # 输出该页的段子
-            self.getOneStory(pageStories, nowPage)
-</code></pre><p>spider = QSBK()<br>spider.start()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">好啦，大家来测试一下吧，点一下回车会输出一个段子，包括第几页，发布人，段子内容，点赞数以及评论数量，是不是感觉爽爆了！</div><div class="line"></div><div class="line"></div><div class="line">## **完善更新版爬虫代码**</div><div class="line"></div><div class="line">在上面爬虫的基础上，还增加爬取了百科段子的评论。按C查看当前这个糗事的评论，当切换到查看评论时，</div><div class="line">换回车显示下一个评论,按Q退出回到查看糗事。糗事段子页数是一页一页加载的，如果你已经看完所有的糗事，就会自动退出！</div></pre></td></tr></table></figure>
-<p>#-<em>-coding:utf8-</em>-</p>
-<p>#created by 10412</p>
-<p>#在Spiders-qiushibaike.py基础上，爬取了百科段子的评论。按C查看当前这个糗事的评论，当切换到查看评论时，</p>
-<h1 id="换回车显示下一个评论-按Q退出回到查看糗事。糗事段子页数是一页一页加载的，如果你已经看完所有的糗事，就会自动退出！"><a href="#换回车显示下一个评论-按Q退出回到查看糗事。糗事段子页数是一页一页加载的，如果你已经看完所有的糗事，就会自动退出！" class="headerlink" title="换回车显示下一个评论,按Q退出回到查看糗事。糗事段子页数是一页一页加载的，如果你已经看完所有的糗事，就会自动退出！"></a>换回车显示下一个评论,按Q退出回到查看糗事。糗事段子页数是一页一页加载的，如果你已经看完所有的糗事，就会自动退出！</h1><p>import urllib<br>import urllib2<br>import re<br>import os.path</p>
-<p>htmlCharacterMap = {<br>    ‘<br>‘ : ‘\n’,<br>    ‘&quot;’ : ‘“‘,<br>    ‘&nbsp;’ : ‘ ‘,<br>    ‘&gt;’ : ‘&gt;’,<br>    ‘&lt;’ : ‘&lt;’,<br>    ‘&amp;’: ‘&amp;’,<br>    ‘&amp;#39’:”‘“,<br>}</p>
-<p>class QSBK(object):<br>    “””糗事百科的爬虫”””<br>    def <strong>init</strong>(self):<br>        self.pageIndex = 1<br>        self.pagetotal = 9999<br>        self.user_agent = ‘Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36’<br>        self.headers = {‘User-Agent’ : self.user_agent}<br>        self.stories = []<br>        self.comments = []<br>        self.currentStoryId = ‘’</p>
-<pre><code>    #是否要退出了
-    self.enable = False
-    #记录当前是否在查看评论
-    self.viewComment = False
-
-def getPageContent(self, pageIndex):
-    try:
-        url = &apos;http://www.qiushibaike.com/8hr/page/%d/&apos; % pageIndex
-        request = urllib2.Request(url, headers=self.headers)
-        print u&apos;开始加载%02d页&apos; % pageIndex
-        response = urllib2.urlopen(request, timeout=5)
-        print u&apos;成功加载%02d页&apos; % pageIndex
-        pageContent = response.read().decode(&apos;utf-8&apos;)
-        return pageContent
-    except urllib2.URLError, e:
-        if hasattr(e, &apos;reason&apos;):
-            print u&quot;连接糗事百科失败，错误原因：&quot;, e.reason
-            return None
-
-def getCommentsContent(self, storyId):
-    # 得到段子的评论
-    try:
-        url = &apos;http://www.qiushibaike.com/article/%s&apos; % storyId
-        request = urllib2.Request(url, headers=self.headers)
-        response = urllib2.urlopen(request, timeout=5)
-        pageContent = response.read().decode(&apos;utf-8&apos;)
-        return pageContent
-    except urllib2.URLError, e:
-        if hasattr(e, &apos;reason&apos;):
-            print u&quot;连接糗事百科失败，错误原因：&quot;, e.reason
-            return None
-
-def getPageTotal(self, content):
-    # 得到总页数
-    if self.pagetotal != 9999:
-        # print u&apos;加载第%d页&apos; % self.pageIndex
-        return
-    pattrenStr = &apos;&lt;span class=&quot;page-numbers&quot;&gt;(?P&lt;pagetotal&gt;.*?)&lt;/span&gt;&apos;
-    pattern = re.compile(pattrenStr, re.S)
-    items = re.findall(pattern, content)
-    if len(items)&gt;0:
-        self.pagetotal = int(items[-1].strip())
-        print u&apos;总共有%d页&apos; % self.pagetotal
-
-def getPageItems(self, pageIndex):
-    pageContent = self.getPageContent(pageIndex)
-    with open(&apos;temp%02d.html&apos; % pageIndex, &apos;w&apos;) as f:
-        f.write(pageContent.encode(&apos;utf-8&apos;))
-    if not pageContent:
-        print &quot;页面加载失败...&quot;
-        return None
-    self.getPageTotal(pageContent)
-    pattrenStr = r&apos;&lt;h2&gt;(?P&lt;authorname&gt;.*?)&lt;/h2&gt;.*?&apos;\
-                    r&apos;&lt;div class=&quot;content&quot;&gt;(?P&lt;content&gt;.*?)&lt;/div&gt;&apos;\
-                    r&apos;(?P&lt;maybehaveimage&gt;.*?)&apos;\
-                    r&apos;&lt;i class=&quot;number&quot;&gt;(?P&lt;numbervote&gt;.*?)&lt;/i&gt;.*?&apos;\
-                    r&apos;&lt;span class=&quot;stats-comments&quot;&gt;(?P&lt;comments&gt;.*?)&lt;/div&gt;&apos;
-    pattern = re.compile(pattrenStr, re.S)
-    items = re.findall(pattern, pageContent)
-    return items
-
-def getCurrentStoryComments(self, storyId):
-    #切换到查看评论模式
-    self.viewComment = True
-    content = self.getCommentsContent(storyId)
-    if not content:
-        print &quot;页面加载失败...&quot;
-        return None
-    reStr = r&apos;&lt;div id=&quot;comment-.*?&apos;\
-                r&apos;&lt;a href=&quot;/users/.*?/&quot; class=&quot;userlogin&quot; target=&quot;_blank&quot; title=&quot;(?P&lt;username&gt;.*?)&quot;&gt;(?P=username)&lt;/a&gt;.*?&apos;\
-                r&apos;&lt;span class=&quot;body&quot;&gt;(?P&lt;comment&gt;.*?)&lt;/span&gt;.*?&apos;\
-                r&apos;&lt;div class=&quot;report&quot;&gt;(?P&lt;index&gt;.*?)&lt;/div&gt;&apos;
-    pattern = re.compile(reStr, re.S)
-    items = re.findall(pattern, content)
-    del self.comments[:]
-    for item in items:
-        comentstr = item[0]+&apos;(&apos;+ item[2] + u&apos;楼)&apos; + &apos;\n&apos; + item[1] + &apos;\n&apos;
-        for (k,v) in htmlCharacterMap.items():
-            re.sub(re.compile(k), v, comentstr)
-        self.comments.append(comentstr)
-    if len(self.comments)&gt;0:
-        print &apos;已切换到查看评论，换回车显示下一个评论,按Q退出回到查看糗事&apos;
-    else:
-        print &apos;当前糗事没有评论&apos;
-        self.viewComment = False
-
-def getNextPage(self):
-    if self.pageIndex &gt; self.pagetotal:
-        self.enable = False
-        print &quot;你已经看完所有的糗事，现在自动退出！&quot;
-        return
-    items = self.getPageItems(self.pageIndex)
-    self.pageIndex += 1
-    for item in items:
-        #如果有图片直接跳过，因为图片在终端显示不了
-        if re.search(&apos;img&apos;, item[2]):
-            continue
-        content = item[1].strip()
-        #转换html的特殊字符
-        for (k,v) in htmlCharacterMap.items():
-            content = re.sub(re.compile(k), v, content)
-        authorname = item[0].strip()
-        for (k,v) in htmlCharacterMap.items():
-            authorname = re.sub(re.compile(k), v, authorname)
-        #找出评论个数，没有为0
-        pattern = re.compile(r&apos;.*?&lt;a href=&quot;/article/(?P&lt;id&gt;.*?)&quot;.*?&lt;i class=&quot;number&quot;&gt;(?P&lt;number&gt;.*?)&lt;/i&gt;.*?&apos;, re.S)
-        result = re.match(pattern, item[4])
-        commentnumbers = 0
-        articleId = &apos;&apos;
-        if result:
-            commentnumbers = result.groupdict().get(&apos;number&apos;, &apos;0&apos;)
-            articleId = result.groupdict().get(&apos;id&apos;, &apos;&apos;)
-        self.stories.append(authorname +
-        &apos;(&apos; + item[3].strip() + u&apos;好笑·&apos; + str(commentnumbers) + u&apos;评论)&apos;
-         +
-        &apos;\n&apos; + content + &apos;\n&apos;)
-        self.stories.append(articleId)
-
-def getNextComment(self):
-    print self.comments[0]
-    self.comments.pop(0)
-    if len(self.comments)==0:
-        print &apos;你已查看完这个糗事的所有评论,现在自动退出到查看糗事&apos;
-        self.viewComment = False
-
-def getOneStory(self):
-    #防止有的页面全是带图片的
-    while (len(self.stories)==0 and self.enable):
-        self.getNextPage()
-    story = self.stories[0]
-    self.currentStoryId = self.stories[1]
-    print story
-    self.stories.pop(0)
-    self.stories.pop(0)
-    if len(self.stories)==0:
-        self.getNextPage()
-
-def start(self):
-    #先删除临时保存的网页
-    tempfiles = [x for x in os.listdir(&apos;.&apos;) if os.path.isfile(x) and os.path.splitext(x)[1]==&apos;.html&apos; and x.startswith(&apos;temp&apos;)]
-    for file in tempfiles:
-        os.remove(file)
-    print u&quot;正在读取糗事百科，按回车查看下一个糗事，按C查看当前这个糗事的评论，按Q退出或返回&quot;
-    self.enable = True
-    self.getNextPage()
-    while self.enable:
-        input = raw_input()
-        if input.upper() == &quot;Q&quot;:
-            if not self.viewComment:
-                self.enable = False
-            else:
-                self.viewComment = False
-                print &apos;现在退出到查看糗事了&apos;
-        elif input.upper() == &quot;C&quot;:
-            #查看当前看到的糗事的评论
-            if len(self.currentStoryId)&gt;0:
-                self.getCurrentStoryComments(self.currentStoryId)
-            else:
-                print &apos;这条糗事没有评论&apos;
-        else:
-            if not self.viewComment:
-                self.getOneStory()
-            else:
-                self.getNextComment()
-</code></pre><p>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>    spider = QSBK()<br>    spider.start()<br>```</p>
-
+        
+          <a class="article-more-a" href="/2017/03/28/Python爬虫实战之爬取糗事百科段子/#more">more >></a>
+        
       
 
       
@@ -601,6 +340,21 @@ def start(self):
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -626,9 +380,24 @@ def start(self):
     <article id="post-Python爬虫实战之爬取百度贴吧帖子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/Python爬虫实战之爬取百度贴吧帖子/">Python爬虫实战之爬取百度贴吧帖子</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/28/Python爬虫实战之爬取百度贴吧帖子/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:58:38.918Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Python爬虫实战之爬取百度贴吧帖子"><a href="#Python爬虫实战之爬取百度贴吧帖子" class="headerlink" title="Python爬虫实战之爬取百度贴吧帖子"></a>Python爬虫实战之爬取百度贴吧帖子</h2><p>大家好，上次我们实验了爬取了<a href="https://github.com/zhisheng17/Python-Projects/tree/master/qiushibaike" target="_blank" rel="external">糗事百科的段子</a>，那么这次我们来尝试一下爬取百度贴吧的帖子。与上一篇不同的是，这次我们需要用到文件的相关操作。</p>
+        <p>大家好，上次我们实验了爬取了<a href="https://github.com/zhisheng17/Python-Projects/tree/master/qiushibaike" target="_blank" rel="external">糗事百科的段子</a>，那么这次我们来尝试一下爬取百度贴吧的帖子。与上一篇不同的是，这次我们需要用到文件的相关操作。</p>
 <h3 id="本篇目标"><a href="#本篇目标" class="headerlink" title="本篇目标"></a><strong>本篇目标</strong></h3><ol>
 <li><p>对百度贴吧的任意帖子进行抓取</p>
 </li>
@@ -640,12 +409,29 @@ def start(self):
 <h3 id="1-URL格式的确定"><a href="#1-URL格式的确定" class="headerlink" title="1. URL格式的确定"></a><strong>1. URL格式的确定</strong></h3><p>首先，我们先观察一下百度贴吧的任意一个帖子。</p>
 <p>比如：<a href="http://tieba.baidu.com/p/3138733512?see_lz=1&amp;pn=1，这是一个关于NBA50大的盘点，分析一下这个地址。" target="_blank" rel="external">http://tieba.baidu.com/p/3138733512?see_lz=1&amp;pn=1，这是一个关于NBA50大的盘点，分析一下这个地址。</a></p>
 <blockquote>
-<p> <code>http://</code>  代表资源传输使用http协议<br>  <figure class="highlight plain"><figcaption><span>是百度的二级域名，指向百度贴吧的服务器。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">&gt;   ```/p/3138733512``` 是服务器某个资源，即这个帖子的地址定位符</div><div class="line">&gt;   ```see_lz```和```pn```是该```URL```的两个参数，分别代表了只看楼主和帖子页码，等于1表示该条件为真</div><div class="line"></div><div class="line"></div><div class="line">所以我们可以把URL分为两部分，一部分为基础部分，一部分为参数部分。</div><div class="line"></div><div class="line">例如，上面的URL我们划分基础部分是 http://tieba.baidu.com/p/3138733512，参数部分是 ?see_lz=1&amp;pn=1</div><div class="line"></div><div class="line">### **2. 页面的抓取**</div><div class="line"></div><div class="line">熟悉了URL的格式，那就让我们用urllib2库来试着抓取页面内容吧。上一篇糗事百科我们最后改成了面向对象的编码方式，这次我们直接尝试一下，定义一个类名叫BDTB(百度贴吧)，一个初始化方法，一个获取页面的方法。</div><div class="line"></div><div class="line">其中，有些帖子我们想指定给程序是否要只看楼主，所以我们把只看楼主的参数初始化放在类的初始化上，即init方法。另外，获取页面的方法我们需要知道一个参数就是帖子页码，所以这个参数的指定我们放在该方法中。</div><div class="line"></div><div class="line">综上，我们初步构建出基础代码如下：</div><div class="line"></div><div class="line">```python</div><div class="line">#-*-coding:utf8-*-</div><div class="line">#created by 10412</div><div class="line"></div><div class="line">import urllib</div><div class="line">import urllib2</div><div class="line">import re</div><div class="line"></div><div class="line">#百度贴吧爬虫类</div><div class="line">class BDTB:</div><div class="line"></div><div class="line">    #初始化，传入基地址，是否只看楼主的参数</div><div class="line">    def __init__(self, baseUrl, seeLZ):</div><div class="line">        self.baseURL = baseUrl</div><div class="line">        self.seeLZ = &apos;?see_lz=&apos; + str(seeLZ)</div><div class="line"></div><div class="line">    #传入页码，获取该页帖子的代码</div><div class="line">    def getPage(self, pageNum):</div><div class="line">        try:</div><div class="line">            url = self.baseURL + self.seeLZ + &apos;&amp;pn=&apos; + str(pageNum)</div><div class="line">            request = urllib2.Request(url)</div><div class="line">            response = urllib2.urlopen(request)</div><div class="line">            print response.read()</div><div class="line">            return response</div><div class="line">        except urllib2.URLError, e:</div><div class="line">            if hasattr(e, &quot;reason&quot;):</div><div class="line">                print u&quot;连接百度贴吧失败,错误原因&quot;,e.reason</div><div class="line">                return None</div><div class="line"></div><div class="line">baseURL = &apos;http://tieba.baidu.com/p/3138733512&apos;</div><div class="line">bdtb = BDTB(baseURL, 1)</div><div class="line">bdtb.getPage(1)</div></pre></td></tr></table></figure></p>
+<p> <code>http://</code>  代表资源传输使用http协议<br>  <figure class="highlight plain"><figcaption><span>是百度的二级域名，指向百度贴吧的服务器。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&gt;   ```/p/3138733512``` 是服务器某个资源，即这个帖子的地址定位符</div><div class="line">&gt;   ```see_lz```和```pn```是该```URL```的两个参数，分别代表了只看楼主和帖子页码，等于1表示该条件为真</div><div class="line"></div><div class="line"></div><div class="line">所以我们可以把URL分为两部分，一部分为基础部分，一部分为参数部分。</div><div class="line"></div><div class="line">例如，上面的URL我们划分基础部分是 http://tieba.baidu.com/p/3138733512，参数部分是 ?see_lz=1&amp;pn=1</div><div class="line">&lt;!-- more --&gt;</div><div class="line">### **2. 页面的抓取**</div><div class="line"></div><div class="line">熟悉了URL的格式，那就让我们用urllib2库来试着抓取页面内容吧。上一篇糗事百科我们最后改成了面向对象的编码方式，这次我们直接尝试一下，定义一个类名叫BDTB(百度贴吧)，一个初始化方法，一个获取页面的方法。</div><div class="line"></div><div class="line">其中，有些帖子我们想指定给程序是否要只看楼主，所以我们把只看楼主的参数初始化放在类的初始化上，即init方法。另外，获取页面的方法我们需要知道一个参数就是帖子页码，所以这个参数的指定我们放在该方法中。</div><div class="line"></div><div class="line">综上，我们初步构建出基础代码如下：</div></pre></td></tr></table></figure></p>
 </blockquote>
-<p>运行代码，我们可以看到屏幕上打印出了这个帖子第一页楼主发言的所有内容，形式为HTML代码。</p>
-<p> <img src="http://img.blog.csdn.net/20160928085851899" alt="这里写图片描述"></p>
-<h3 id="3-提取相关信息"><a href="#3-提取相关信息" class="headerlink" title="3. 提取相关信息"></a><strong>3. 提取相关信息</strong></h3><h4 id="1-提取帖子标题"><a href="#1-提取帖子标题" class="headerlink" title="1)提取帖子标题"></a>1)提取帖子标题</h4><p>在浏览器中审查元素，或者按F12，查看页面源代码，我们找到标题所在的代码段如下:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"core_title_txt pull-left text-overflow  "</span> <span class="attr">title</span>=<span class="string">"纯原创我心中的NBA2014-2015赛季现役50大"</span> <span class="attr">style</span>=<span class="string">"width: 416px"</span>&gt;</span>纯原创我心中的NBA2014-2015赛季现役50大<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>#-<em>-coding:utf8-</em>-</p>
+<p>#created by 10412<br>import urllib<br>import urllib2<br>import re</p>
+<p>#百度贴吧爬虫类<br>class BDTB:</p>
+<pre><code>#初始化，传入基地址，是否只看楼主的参数
+def __init__(self, baseUrl, seeLZ):
+    self.baseURL = baseUrl
+    self.seeLZ = &apos;?see_lz=&apos; + str(seeLZ)
+
+#传入页码，获取该页帖子的代码
+def getPage(self, pageNum):
+    try:
+        url = self.baseURL + self.seeLZ + &apos;&amp;pn=&apos; + str(pageNum)
+        request = urllib2.Request(url)
+        response = urllib2.urlopen(request)
+        print response.read()
+        return response
+    except urllib2.URLError, e:
+        if hasattr(e, &quot;reason&quot;):
+            print u&quot;连接百度贴吧失败,错误原因&quot;,e.reason
+            return None
+</code></pre><p>baseURL = ‘<a href="http://tieba.baidu.com/p/3138733512" target="_blank" rel="external">http://tieba.baidu.com/p/3138733512</a>‘<br>bdtb = BDTB(baseURL, 1)<br>bdtb.getPage(1)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">运行代码，我们可以看到屏幕上打印出了这个帖子第一页楼主发言的所有内容，形式为HTML代码。</div><div class="line"></div><div class="line"> ![这里写图片描述](http://img.blog.csdn.net/20160928085851899)</div><div class="line"></div><div class="line">### **3. 提取相关信息**</div><div class="line"></div><div class="line">#### 1)提取帖子标题</div><div class="line"></div><div class="line">在浏览器中审查元素，或者按F12，查看页面源代码，我们找到标题所在的代码段如下:</div><div class="line"></div><div class="line">```html</div><div class="line">&lt;h3 class=&quot;core_title_txt pull-left text-overflow  &quot; title=&quot;纯原创我心中的NBA2014-2015赛季现役50大&quot; style=&quot;width: 416px&quot;&gt;纯原创我心中的NBA2014-2015赛季现役50大&lt;/h3&gt;</div></pre></td></tr></table></figure></p>
 <p>所以我们要提取<code>&lt;h3&gt;</code>中的内容，因为一开始可以查看整个界面的原代码，查看里面含有<code>&lt;h3&gt;</code>标签的不止一个。所以需要写正则表达式来匹配，如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h3 class="core_title_txt.*?&gt;(.*?)&lt;/h3&gt;</div></pre></td></tr></table></figure>
 <p>然后，我们可以写个获取标题的方法</p>
@@ -697,6 +483,21 @@ def start(self):
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
