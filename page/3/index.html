@@ -155,185 +155,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-【字符串】判断两字符串是否互为旋转词？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-奇怪的Java题：为什么128 == 128返回为False，而127 == 127会返回为True-" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/【字符串】判断两字符串是否互为旋转词？/">【字符串】判断两字符串是否互为旋转词？</a>
+      <a class="article-title" href="/2017/03/28/奇怪的Java题：为什么128 == 128返回为False，而127 == 127会返回为True-/">奇怪的Java题：为什么128 == 128返回为False，而127 == 127会返回为True?</a>
     </h1>
   
 
         
-        <a href="/2017/03/28/【字符串】判断两字符串是否互为旋转词？/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:49:25.536Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+        <a href="/2017/03/28/奇怪的Java题：为什么128 == 128返回为False，而127 == 127会返回为True-/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:55:36.199Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="相关阅读："><a href="#相关阅读：" class="headerlink" title="相关阅读："></a>相关阅读：</h4><h3 id="字符串逆序问题的解决方法"><a href="#字符串逆序问题的解决方法" class="headerlink" title="字符串逆序问题的解决方法"></a><a href="http://blog.csdn.net/tzs_1041218129/article/details/54645569">字符串逆序问题的解决方法</a></h3><p>题目：</p>
-<p>如果对于一个字符串A，将A的前面任意一部分挪到后边去形成的字符串称为A的旋转词。</p>
-<p>比如A=”12345”,A的旋转词有”12345”,”23451”,”34512”,”45123”和”51234”。</p>
-<p>对于两个字符串A和B，请判断A和B是否互为旋转词。</p>
-<p>给定两个字符串A和B及他们的长度lena，lenb，请返回一个bool值，代表他们是否互为旋转词。<br>
+        <p>这是我们今天要讨论的话题，因为我觉得它非常的有趣。</p>
+<p>如果你运行如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class  A</div><div class="line">&#123;</div><div class="line">	public static void main(String[] args)</div><div class="line">	&#123;</div><div class="line">		Integer a = 128, b = 128;</div><div class="line">		System.out.println(a == b);</div><div class="line">		Integer c = 127, d = 127;</div><div class="line">		System.out.println(c == d);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你会得到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">false</div><div class="line">true</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161211172715176?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>
         
-          <a class="article-more-a" href="/2017/03/28/【字符串】判断两字符串是否互为旋转词？/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旋转词</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/28/【字符串】判断两字符串是否互为旋转词？/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-程序访问文件的几种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/程序访问文件的几种方式/">程序访问文件的几种方式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/28/程序访问文件的几种方式/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:47:04.592Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><h3 id="程序访问文件的几种方式"><a href="#程序访问文件的几种方式" class="headerlink" title="程序访问文件的几种方式"></a>程序访问文件的几种方式</h3><blockquote>
-<p>读取和写入文件 I/O 操作都调用操作系统提供的接口。因为磁盘设备是由操作系统管理的，应用程序要访问物理设备只能通过系统调用的方式来工作。读和写分别对应 read() 和 write() 两个系统调用。而只要是系统调用就可能存在内核空间地址和用户空间地址切换的问题，这也是为什么操作系统为了保护系统本身的运行安全而将内核程序运行使用的内存空间和用户程序运行的内存空间进行隔离造成的。虽然这样可以保证内核程序运行的安全性，但是也存在数据可能需要从内核空间向用户空间复制的问题。</p>
-<p>如果遇到非常耗时的操作，如磁盘 I/O， 数据从磁盘复制到内核空间，然后又从内核空间复制到用户空间，将会非常缓慢。这时操作系统为了加速 I/O 访问，在内核空间使用缓存机制，也就是将从磁盘读取的文件按照一定的组织方式进行缓存，如果用户程序访问的是同一段磁盘地址的空间数据，那么操作系统将从内核缓存中直接取出返回给用户程序，这样就可以减小 I/O 的响应时间。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/03/28/程序访问文件的几种方式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IO</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/28/程序访问文件的几种方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java NIO 系列教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/Java NIO 系列教程/">Java NIO 系列教程</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/28/Java NIO 系列教程/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:44:23.057Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java NIO（New IO）是从Java 1.4版本开始引入的一个新的IO API，可以替代标准的Java IO API。</p>
-<p>Java NIO提供了与标准IO不同的IO工作方式：</p>
-<ul>
-<li><p><strong>Channels and Buffers（通道和缓冲区）</strong>：标准的IO基于字节流和字符流进行操作的，而NIO是基于通道（Channel）和缓冲区（Buffer）进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。</p>
-</li>
-<li><p><strong>Asynchronous IO（异步IO）</strong>：Java NIO可以让你异步的使用IO，例如：当线程从通道读取数据到缓冲区时，线程还是可以进行其他事情。当数据被写入到缓冲区时，线程可以继续处理它。从缓冲区写入通道也类似。</p>
-</li>
-<li><p><strong>Selectors（选择器）</strong>：Java NIO引入了选择器的概念，选择器用于监听多个通道的事件（比如：连接打开，数据到达）。因此，单个的线程可以监听多个数据通道。</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/03/28/Java NIO 系列教程/#more">more >></a>
+          <a class="article-more-a" href="/2017/03/28/奇怪的Java题：为什么128 == 128返回为False，而127 == 127会返回为True-/#more">more >></a>
         
       
 
@@ -349,10 +198,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NIO</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -361,7 +206,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/28/Java NIO 系列教程/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/28/奇怪的Java题：为什么128 == 128返回为False，而127 == 127会返回为True-/">展开全文 >></a>
         </p>
       
 
@@ -379,105 +224,37 @@
 
 
   
-    <article id="post-JVM性能调优监控工具jps、jstack、jmap、jhat、jstat等使用详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-通过项目逐步深入了解Spring MVC（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/JVM性能调优监控工具jps、jstack、jmap、jhat、jstat等使用详解/">JVM性能调优监控工具jps、jstack、jmap、jhat、jstat等使用详解</a>
+      <a class="article-title" href="/2017/03/28/通过项目逐步深入了解Spring MVC（一）/">通过项目逐步深入了解Spring MVC（一）</a>
     </h1>
   
 
         
-        <a href="/2017/03/28/JVM性能调优监控工具jps、jstack、jmap、jhat、jstat等使用详解/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:40:34.793Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+        <a href="/2017/03/28/通过项目逐步深入了解Spring MVC（一）/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:55:16.943Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="javap-和-javac"><a href="#javap-和-javac" class="headerlink" title="javap 和  javac"></a>javap 和  javac</h3><ul>
-<li>javac -verbose 类名.java</li>
-<li>java -verbose 类名</li>
-<li>javap -c 类名</li>
-<li>javap -verbose 类名</li>
-</ul>
+        <h3 id="相关阅读："><a href="#相关阅读：" class="headerlink" title="相关阅读："></a>相关阅读：</h3><p>本文档和项目代码地址：<a href="https://github.com/zhisheng17/springmvc">https://github.com/zhisheng17/springmvc</a></p>
 <hr>
+<p>了解 Spring：</p>
+<p>Spring 官网：<a href="http://spring.io/">http://spring.io/</a></p>
+<p>一个好的东西一般都会有一个好的文档解释说明，如果你英语还行，建议还是看官方文档。</p>
+<hr>
+<h2 id="Spring-MVC基础知识"><a href="#Spring-MVC基础知识" class="headerlink" title="Spring MVC基础知识"></a>Spring MVC基础知识</h2><p>什么是Spring MVC？</p>
+<p>Spring MVC框架原理（掌握）</p>
+<p>​    前端控制器、处理器映射器、处理器适配器、试图解析器<br>
         
-          <a class="article-more-a" href="/2017/03/28/JVM性能调优监控工具jps、jstack、jmap、jhat、jstat等使用详解/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">性能调优工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/28/JVM性能调优监控工具jps、jstack、jmap、jhat、jstat等使用详解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-详解 Filter 过滤器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/详解 Filter 过滤器/">详解 Filter 过滤器</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/27/详解 Filter 过滤器/" class="archive-article-date">
-  	<time datetime="2017-03-26T17:03:48.417Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1、简介</strong></p>
-<p>　　Filter也称之为过滤器，它是Servlet技术中最实用的技术，WEB开发人员通过Filter技术，对web服务器管理的所有web资源：例如Jsp, Servlet, 静态图片文件或静态 html 文件等进行拦截，从而实现一些特殊的功能。例如实现URL级别的权限访问控制、过滤敏感词汇、压缩响应信息等一些高级功能。</p>
-<p>　　它主要用于对用户请求进行预处理，也可以对HttpServletResponse 进行后处理。使用Filter 的完整流程：Filter 对用户请求进行预处理，接着将请求交给Servlet 进行处理并生成响应，最后Filter 再对服务器响应进行后处理。</p>
-        
-          <a class="article-more-a" href="/2017/03/27/详解 Filter 过滤器/#more">more >></a>
+          <a class="article-more-a" href="/2017/03/28/通过项目逐步深入了解Spring MVC（一）/#more">more >></a>
         
       
 
@@ -495,7 +272,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Filter过滤器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring MVC</a>
         		</li>
       		
 		</ul>
@@ -505,7 +282,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/27/详解 Filter 过滤器/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/28/通过项目逐步深入了解Spring MVC（一）/">展开全文 >></a>
         </p>
       
 
@@ -523,108 +300,32 @@
 
 
   
-    <article id="post-Pyspider框架 —— Python爬虫实战之爬取 V2EX 网站帖子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/Pyspider框架 —— Python爬虫实战之爬取 V2EX 网站帖子/">Pyspider框架 —— Python爬虫实战之爬取 V2EX 网站帖子</a>
+      <a class="article-title" href="/2017/03/28/Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑/">Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑</a>
     </h1>
   
 
         
-        <a href="/2017/03/27/Pyspider框架 —— Python爬虫实战之爬取 V2EX 网站帖子/" class="archive-article-date">
-  	<time datetime="2017-03-26T17:01:51.117Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-27</time>
+        <a href="/2017/03/28/Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:55:02.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>背景：</strong></p>
-<p><strong>PySpider</strong>：一个国人编写的强大的网络爬虫系统并带有强大的WebUI。采用Python语言编写，分布式架构，支持多种数据库后端，强大的WebUI支持脚本编辑器，任务监视器，项目管理器以及结果查看器。在线示例： <strong><a href="http://demo.pyspider.org/">http://demo.pyspider.org/</a></strong></p>
-<p><strong>官方文档： <a href="http://docs.pyspider.org/en/latest/">http://docs.pyspider.org/en/latest/</a> </strong></p>
-<p><strong>Github :  <a href="https://github.com/binux/pyspider">https://github.com/binux/pyspider</a> </strong></p>
-<p>本文爬虫代码 Github 地址：<strong><a href="https://github.com/zhisheng17/Python-Projects/blob/master/v2ex/V2EX.py">https://github.com/zhisheng17/Python-Projects/blob/master/v2ex/V2EX.py</a></strong></p>
+        <h3 id="项目代码地址：https-github-com-zhisheng17-springmvc"><a href="#项目代码地址：https-github-com-zhisheng17-springmvc" class="headerlink" title="项目代码地址：https://github.com/zhisheng17/springmvc"></a>项目代码地址：<a href="https://github.com/zhisheng17/springmvc">https://github.com/zhisheng17/springmvc</a></h3><p>最近在学习 Spring MVC ，其中在做一个简单的博客系统demo，是使用 SpringMVC 集成</p>
+<p>Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访问。结果其中遇到的坑不</p>
+<p>是一点点啊，我差点崩溃了，其中最大的原因就是由于 Hibernate JPA 中的bug了，反正一开始</p>
+<p>还不知道是这个问题，导致折腾了快一天的时间。想想都可怕啊。</p>
         
-          <a class="article-more-a" href="/2017/03/27/Pyspider框架 —— Python爬虫实战之爬取 V2EX 网站帖子/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Pyspider</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/27/Pyspider框架 —— Python爬虫实战之爬取 V2EX 网站帖子/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-深入分析 Java Web 中的中文编码问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/27/深入分析 Java Web 中的中文编码问题/">深入分析 Java Web 中的中文编码问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/27/深入分析 Java Web 中的中文编码问题/" class="archive-article-date">
-  	<time datetime="2017-03-26T16:39:33.504Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>背景：</p>
-<blockquote>
-<p>编码问题一直困扰着程序开发人员，尤其是在 Java 中更加明显，因为 Java 是跨平台的语言，在不同平台的编码之间的切换较多。接下来将介绍 Java 编码问题出现的根本原因；在 Java 中经常遇到的几种编码格式的区别；在 Java 中经常需要编码的场景；出现中文问题的原因分析；在开发 Java Web 中可能存在编码的几个地方；一个 HTTP 请求怎么控制编码格式；如何避免出现中文编码问题等。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/03/27/深入分析 Java Web 中的中文编码问题/#more">more >></a>
+          <a class="article-more-a" href="/2017/03/28/Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑/#more">more >></a>
         
       
 
@@ -642,7 +343,23 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编码</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Bootstrap</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring MVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Hibernate JPA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -652,7 +369,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/27/深入分析 Java Web 中的中文编码问题/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/28/Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑/">展开全文 >></a>
         </p>
       
 
@@ -670,29 +387,34 @@
 
 
   
-    <article id="post-详细深入分析 Java ClassLoader 工作机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/26/详细深入分析 Java ClassLoader 工作机制/">详细深入分析 Java ClassLoader 工作机制</a>
+      <a class="article-title" href="/2017/03/28/Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统/">Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统 Demo</a>
     </h1>
   
 
         
-        <a href="/2017/03/26/详细深入分析 Java ClassLoader 工作机制/" class="archive-article-date">
-  	<time datetime="2017-03-26T13:27:57.101Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
+        <a href="/2017/03/28/Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:54:40.743Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是-ClassLoader-？"><a href="#什么是-ClassLoader-？" class="headerlink" title="什么是 ClassLoader ？"></a>什么是 ClassLoader ？</h3><p>大家都知道，当我们写好一个 Java 程序之后，不是管是 C/S 还是 B/S 应用，都是由若干个 .class 文件组织而成的一个完整的 Java 应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的 class 文件当中，所以经常要从这个 class 文件中要调用另外一个 class 文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个 class 文件到内存当中的，从而只有 class 文件被载入到了内存之后，才能被其它 class 所引用。所以 ClassLoader 就是用来动态加载 class 文件到内存当中用的。</p>
+        <h4 id="相关阅读："><a href="#相关阅读：" class="headerlink" title="相关阅读："></a>相关阅读：</h4><p>1、<a href="http://blog.csdn.net/tzs_1041218129/article/details/53791765">Spring MVC+Hibernate JPA+ Bootstrap 搭建的博客系统项目中所遇到的坑</a></p>
+<p>由于整个系统不是很难，这里就不详细介绍了，我相信看源码的话，应该能够看得懂。</p>
+<h3 id="源码地址：https-github-com-zhisheng17-springmvc"><a href="#源码地址：https-github-com-zhisheng17-springmvc" class="headerlink" title="源码地址：https://github.com/zhisheng17/springmvc"></a>源码地址：<a href="https://github.com/zhisheng17/springmvc">https://github.com/zhisheng17/springmvc</a></h3><p><strong>数据库</strong>：<a href="https://github.com/zhisheng17/springmvc/tree/master/sql/springdemo.sql">springdemo.sql</a></p>
+<p>下面给出下整个系统的截图吧，觉得不错，可以给个 star ，哈哈！后续继续在这个项目中加入新的项目。</p>
+<h4 id="截图："><a href="#截图：" class="headerlink" title="截图："></a>截图：</h4><p><strong>首页</strong></p>
+<p><img src="https://github.com/zhisheng17/springmvc/blob/master/pic/index.jpg?raw=true" alt=""></p>
         
-          <a class="article-more-a" href="/2017/03/26/详细深入分析 Java ClassLoader 工作机制/#more">more >></a>
+          <a class="article-more-a" href="/2017/03/28/Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统/#more">more >></a>
         
       
 
@@ -710,11 +432,23 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Bootstrap</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">类加载机制</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring MVC</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Hibernate JPA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -724,7 +458,154 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/26/详细深入分析 Java ClassLoader 工作机制/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/28/Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java连接Oracle数据库的三种连接方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/Java连接Oracle数据库的三种连接方式/">Java连接Oracle数据库的三种连接方式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/28/Java连接Oracle数据库的三种连接方式/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:54:21.861Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h3><p>这两天在学习Oracle数据库，这里就总结下自己上课所学的知识，同时记录下来，方便整理当天所学下的知识，也同时方便日后自己查询。</p>
+<p>SQL语句的话，这里我就不多讲了，感觉和其他的数据库（MySQL、SQL Server）都是类似，区别不大。</p>
+<p>今天在这里就写下 Java 连接 Oracle 数据库的三种连接方式。<br>
+        
+          <a class="article-more-a" href="/2017/03/28/Java连接Oracle数据库的三种连接方式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/28/Java连接Oracle数据库的三种连接方式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-java读取文件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/java读取文件/">Java读取文件</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/28/java读取文件/" class="archive-article-date">
+  	<time datetime="2017-03-28T10:54:05.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>以字节为单位读取文件</li>
+<li>以字符为单位读取文件</li>
+<li>以行为单位读取文件</li>
+<li>随机读取文件内容</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/03/28/java读取文件/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/28/java读取文件/">展开全文 >></a>
         </p>
       
 
@@ -744,7 +625,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -968,6 +849,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">finally</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
               </li>
             
             <div class="clearfix"></div>
