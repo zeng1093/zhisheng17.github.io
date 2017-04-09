@@ -6,14 +6,45 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: finally | Zhisheng的博客</title>
+  <title>MyBatis的foreach语句详解 | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/tags/finally/index.html">
+  <meta name="description" content="foreach 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。
+foreach 元素的属性主要有 item，index，collection，open，separator，close。
+
+item 表示集合中每一个元素进行迭代时的别名，
+
+index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，
+
+open 表示该语句以什么开始，
+
+separator 表示在每次进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis的foreach语句详解">
+<meta property="og:url" content="http://yoursite.com/2017/04/09/MyBatis-foreach/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
+<meta property="og:description" content="foreach 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。
+foreach 元素的属性主要有 item，index，collection，open，separator，close。
+
+item 表示集合中每一个元素进行迭代时的别名，
+
+index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，
+
+open 表示该语句以什么开始，
+
+separator 表示在每次进行">
+<meta property="og:updated_time" content="2017-04-09T12:23:51.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhisheng的博客">
+<meta name="twitter:title" content="MyBatis的foreach语句详解">
+<meta name="twitter:description" content="foreach 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。
+foreach 元素的属性主要有 item，index，collection，open，separator，close。
+
+item 表示集合中每一个元素进行迭代时的别名，
+
+index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，
+
+open 表示该语句以什么开始，
+
+separator 表示在每次进行">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
   
@@ -153,64 +184,201 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MyBatis-foreach" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/深度探究Java 中 finally 语句块/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:57:39.759Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/深度探究Java 中 finally 语句块/">深度探究Java 中 finally 语句块</a>
+    <h1 class="article-title" itemprop="name">
+      MyBatis的foreach语句详解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/09/MyBatis-foreach/" class="archive-article-date">
+  	<time datetime="2017-04-09T12:11:33.627Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>foreach</strong> 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。</p>
+<p>foreach 元素的属性主要有 item，index，collection，open，separator，close。</p>
+<ul>
+<li><p>item 表示集合中每一个元素进行迭代时的别名，</p>
+</li>
+<li><p>index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，</p>
+</li>
+<li><p>open 表示该语句以什么开始，</p>
+</li>
+<li><p>separator 表示在每次进行迭代之间以什么符号作为分隔 符，</p>
+</li>
+<li><p>close 表示以什么结束。</p>
+</li>
+</ul>
+<p>在使用 foreach 的时候最关键的也是最容易出错的就是 collection 属性，该属性是必须指定的，但是在不同情况 下，该属性的值是不一样的，主要有一下3种情况：</p>
+<ol>
+<li>如果传入的是单参数且参数类型是一个List的时候，collection 属性值为 list</li>
+<li>如果传入的是单参数且参数类型是一个 array 数组的时候，collection 的属性值为 array</li>
+<li>如果传入的参数是多个的时候，我们就需要把它们封装成一个 Map 了，<strong>当然单参数也可以封装成map</strong>，实际上如果你在传入参数的时候，在 breast 里面也是会把它封装成一个 Map 的，map 的 key 就是参数名，所以这个时候 collection 属性值就是传入的 List 或 array 对象在自己封装的 map 里面的 key 。</li>
+</ol>
+<a id="more"></a>
+<p>下面分别来看看上述三种情况的示例代码：</p>
+<p>1.单参数 List 的类型： </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"dynamicForeachTest"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></div><div class="line">        select * from t_blog where id in</div><div class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></div><div class="line">            #&#123;item&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上述 collection 的值为list，对应的 Mapper 是这样的 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Blog&gt; <span class="title">dynamicForeachTest</span><span class="params">(List&lt;Integer&gt; ids)</span></span>;</div></pre></td></tr></table></figure>
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynamicForeachTest</span><span class="params">()</span> </span>&#123;</div><div class="line">        SqlSession session = Util.getSqlSessionFactory().openSession();</div><div class="line">        BlogMapper blogMapper = session.getMapper(BlogMapper.class);</div><div class="line">        List&lt;Integer&gt; ids = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        ids.add(<span class="number">1</span>);</div><div class="line">        ids.add(<span class="number">3</span>);</div><div class="line">        ids.add(<span class="number">6</span>);</div><div class="line">        List&lt;Blog&gt; blogs = blogMapper.dynamicForeachTest(ids);</div><div class="line">        <span class="keyword">for</span> (Blog blog : blogs)</div><div class="line">            System.out.println(blog);</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>2.单参数array数组的类型：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"dynamicForeach2Test"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></div><div class="line">        select * from t_blog where id in</div><div class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"array"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></div><div class="line">            #&#123;item&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上述collection为array，对应的Mapper代码： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public List&lt;Blog&gt; dynamicForeach2Test(int[] ids);</div></pre></td></tr></table></figure>
+<p>对应的测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynamicForeach2Test</span><span class="params">()</span> </span>&#123;</div><div class="line">        SqlSession session = Util.getSqlSessionFactory().openSession();</div><div class="line">        BlogMapper blogMapper = session.getMapper(BlogMapper.class);</div><div class="line">        <span class="keyword">int</span>[] ids = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>&#125;;</div><div class="line">        List&lt;Blog&gt; blogs = blogMapper.dynamicForeach2Test(ids);</div><div class="line">        <span class="keyword">for</span> (Blog blog : blogs)</div><div class="line">            System.out.println(blog);</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>3.自己把参数封装成Map的类型</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"dynamicForeach3Test"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></div><div class="line">        select * from t_blog where title like "%"#&#123;title&#125;"%" and id in</div><div class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"ids"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></div><div class="line">            #&#123;item&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>上述collection的值为ids，是传入的参数Map的key，对应的Mapper代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Blog&gt; <span class="title">dynamicForeach3Test</span><span class="params">(Map&lt;String, Object&gt; params)</span></span>;</div></pre></td></tr></table></figure>
+<p>对应测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynamicForeach3Test</span><span class="params">()</span> </span>&#123;</div><div class="line">        SqlSession session = Util.getSqlSessionFactory().openSession();</div><div class="line">        BlogMapper blogMapper = session.getMapper(BlogMapper.class);</div><div class="line">        <span class="keyword">final</span> List&lt;Integer&gt; ids = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        ids.add(<span class="number">1</span>);</div><div class="line">        ids.add(<span class="number">2</span>);</div><div class="line">        ids.add(<span class="number">3</span>);</div><div class="line">        ids.add(<span class="number">6</span>);</div><div class="line">        ids.add(<span class="number">7</span>);</div><div class="line">        ids.add(<span class="number">9</span>);</div><div class="line">        Map&lt;String, Object&gt; params = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</div><div class="line">        params.put(<span class="string">"ids"</span>, ids);</div><div class="line">        params.put(<span class="string">"title"</span>, <span class="string">"中国"</span>);</div><div class="line">        List&lt;Blog&gt; blogs = blogMapper.dynamicForeach3Test(params);</div><div class="line">        <span class="keyword">for</span> (Blog blog : blogs)</div><div class="line">            System.out.println(blog);</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">finally</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">foreach</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3awW7rMAwEwP7/T+cBvRZ2dynnoZHGp6CJbY0OLEXy6yu+Xt/Xz89Xv/z5m+TvV7957MLAwPhYxuv2umLcvzJfVvLeiIqBgXEAYz3Iri80fy8GBgbGfZC9uitZyv1dGBgYGO8LuPnT8uQPAwMDY3aIzQ+3bWXsPqw/fBbHwMD4QMZKY+Ddn/9TfwMDA+MPM16jq00N2wBarwcDA2NrRpvSrY9N5K3Q/ECLgYGxN2MW+NpxijzhGzZNMTAwDmDkhbC2ndCW/mfFOwwMjL0Zz2ZZ7VLa0Y18KzEwMHZi5K95qtmZJJT1vwEMDIwDGO04RVIOy5ebP+Hy7RgYGEcy2pQxCZTtiFjezsTAwDiBkYTR/Ej5bLIYpY8YGBhbM/Kv85Rxlvy1bc5fQjkGBsZGjPWi2CxEzlqnUTcDAwNja8YMkN/VHlyLzcLAwNiakQfQqEAfLyUvw9XfYmBgbMdI0rVkcflzWna0BRgYGFsz2kRtpTE5SzqL7cDAwDiA0R4a87BYH0TLwh8GBsZpjByWf5u/Zdh3xcDAOIDRNiZnqeHsOcMQjIGBsRHjVV7FAER8AJ4NXtQnZgwMjI9l5NfSAERZtku2rE4WMTAwPpwxC7Ir+7SeVl6OXGBgYGzNyItlychFW3qb1dAwMDAw2sJ9vgWzo+wv68HAwMBYGKe4v/ct52wMDIxNGfmYVz5I0Y6F1aNgGBgYxzDWGwNtg/Mp3sP9DQwMjL/I+AeIgBkG75CrxgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/04/05/String-new/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于String s = new String(&quot;xyz&quot;); 创建几个对象的问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -241,9 +409,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
