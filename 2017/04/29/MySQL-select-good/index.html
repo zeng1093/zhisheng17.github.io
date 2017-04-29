@@ -6,45 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>MyBatis的foreach语句详解 | Zhisheng的博客</title>
+  <title>MySQL 处理海量数据时的一些优化查询速度方法 | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="foreach 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。
-foreach 元素的属性主要有 item，index，collection，open，separator，close。
-
-item 表示集合中每一个元素进行迭代时的别名，
-
-index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，
-
-open 表示该语句以什么开始，
-
-separator 表示在每次进行">
+  <meta name="description" content="在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。
+查询速度慢的原因1、没有索引或者没有用到索引（这是查询慢最常见的问题，是程序设计的缺陷）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis的foreach语句详解">
-<meta property="og:url" content="http://yoursite.com/2017/04/09/MyBatis-foreach/index.html">
+<meta property="og:title" content="MySQL 处理海量数据时的一些优化查询速度方法">
+<meta property="og:url" content="http://yoursite.com/2017/04/29/MySQL-select-good/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
-<meta property="og:description" content="foreach 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。
-foreach 元素的属性主要有 item，index，collection，open，separator，close。
-
-item 表示集合中每一个元素进行迭代时的别名，
-
-index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，
-
-open 表示该语句以什么开始，
-
-separator 表示在每次进行">
-<meta property="og:updated_time" content="2017-04-13T14:18:53.656Z">
+<meta property="og:description" content="在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。
+查询速度慢的原因1、没有索引或者没有用到索引（这是查询慢最常见的问题，是程序设计的缺陷）">
+<meta property="og:updated_time" content="2017-04-29T13:31:55.591Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyBatis的foreach语句详解">
-<meta name="twitter:description" content="foreach 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。
-foreach 元素的属性主要有 item，index，collection，open，separator，close。
-
-item 表示集合中每一个元素进行迭代时的别名，
-
-index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，
-
-open 表示该语句以什么开始，
-
-separator 表示在每次进行">
+<meta name="twitter:title" content="MySQL 处理海量数据时的一些优化查询速度方法">
+<meta name="twitter:description" content="在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。
+查询速度慢的原因1、没有索引或者没有用到索引（这是查询慢最常见的问题，是程序设计的缺陷）">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
   
@@ -192,66 +168,96 @@ separator 表示在每次进行">
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MyBatis-foreach" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MySQL-select-good" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MyBatis的foreach语句详解
+      MySQL 处理海量数据时的一些优化查询速度方法
     </h1>
   
 
         
-        <a href="/2017/04/09/MyBatis-foreach/" class="archive-article-date">
-  	<time datetime="2017-04-09T12:11:33.627Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
+        <a href="/2017/04/29/MySQL-select-good/" class="archive-article-date">
+  	<time datetime="2017-04-29T10:05:54.287Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>foreach</strong> 的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。</p>
-<p>foreach 元素的属性主要有 item，index，collection，open，separator，close。</p>
-<ul>
-<li><p>item 表示集合中每一个元素进行迭代时的别名，</p>
-</li>
-<li><p>index 指 定一个名字，用于表示在迭代过程中，每次迭代到的位置，</p>
-</li>
-<li><p>open 表示该语句以什么开始，</p>
-</li>
-<li><p>separator 表示在每次进行迭代之间以什么符号作为分隔 符，</p>
-</li>
-<li><p>close 表示以什么结束。</p>
-</li>
-</ul>
-<p>在使用 foreach 的时候最关键的也是最容易出错的就是 collection 属性，该属性是必须指定的，但是在不同情况 下，该属性的值是不一样的，主要有一下3种情况：</p>
-<ol>
-<li>如果传入的是单参数且参数类型是一个List的时候，collection 属性值为 list</li>
-<li>如果传入的是单参数且参数类型是一个 array 数组的时候，collection 的属性值为 array</li>
-<li>如果传入的参数是多个的时候，我们就需要把它们封装成一个 Map 了，<strong>当然单参数也可以封装成map</strong>，实际上如果你在传入参数的时候，在 breast 里面也是会把它封装成一个 Map 的，map 的 key 就是参数名，所以这个时候 collection 属性值就是传入的 List 或 array 对象在自己封装的 map 里面的 key 。</li>
-</ol>
-<a id="more"></a>
-<p>下面分别来看看上述三种情况的示例代码：</p>
-<p>1.单参数 List 的类型： </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"dynamicForeachTest"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></div><div class="line">        select * from t_blog where id in</div><div class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"list"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></div><div class="line">            #&#123;item&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>上述 collection 的值为list，对应的 Mapper 是这样的 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Blog&gt; <span class="title">dynamicForeachTest</span><span class="params">(List&lt;Integer&gt; ids)</span></span>;</div></pre></td></tr></table></figure>
-<p>测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynamicForeachTest</span><span class="params">()</span> </span>&#123;</div><div class="line">        SqlSession session = Util.getSqlSessionFactory().openSession();</div><div class="line">        BlogMapper blogMapper = session.getMapper(BlogMapper.class);</div><div class="line">        List&lt;Integer&gt; ids = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        ids.add(<span class="number">1</span>);</div><div class="line">        ids.add(<span class="number">3</span>);</div><div class="line">        ids.add(<span class="number">6</span>);</div><div class="line">        List&lt;Blog&gt; blogs = blogMapper.dynamicForeachTest(ids);</div><div class="line">        <span class="keyword">for</span> (Blog blog : blogs)</div><div class="line">            System.out.println(blog);</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>2.单参数array数组的类型：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"dynamicForeach2Test"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></div><div class="line">        select * from t_blog where id in</div><div class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"array"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></div><div class="line">            #&#123;item&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>上述collection为array，对应的Mapper代码： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public List&lt;Blog&gt; dynamicForeach2Test(int[] ids);</div></pre></td></tr></table></figure>
-<p>对应的测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynamicForeach2Test</span><span class="params">()</span> </span>&#123;</div><div class="line">        SqlSession session = Util.getSqlSessionFactory().openSession();</div><div class="line">        BlogMapper blogMapper = session.getMapper(BlogMapper.class);</div><div class="line">        <span class="keyword">int</span>[] ids = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>&#125;;</div><div class="line">        List&lt;Blog&gt; blogs = blogMapper.dynamicForeach2Test(ids);</div><div class="line">        <span class="keyword">for</span> (Blog blog : blogs)</div><div class="line">            System.out.println(blog);</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>3.自己把参数封装成Map的类型</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"dynamicForeach3Test"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></div><div class="line">        select * from t_blog where title like "%"#&#123;title&#125;"%" and id in</div><div class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"ids"</span> <span class="attr">index</span>=<span class="string">"index"</span> <span class="attr">item</span>=<span class="string">"item"</span> <span class="attr">open</span>=<span class="string">"("</span> <span class="attr">separator</span>=<span class="string">","</span> <span class="attr">close</span>=<span class="string">")"</span>&gt;</span></div><div class="line">            #&#123;item&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>上述collection的值为ids，是传入的参数Map的key，对应的Mapper代码： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Blog&gt; <span class="title">dynamicForeach3Test</span><span class="params">(Map&lt;String, Object&gt; params)</span></span>;</div></pre></td></tr></table></figure>
-<p>对应测试代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dynamicForeach3Test</span><span class="params">()</span> </span>&#123;</div><div class="line">        SqlSession session = Util.getSqlSessionFactory().openSession();</div><div class="line">        BlogMapper blogMapper = session.getMapper(BlogMapper.class);</div><div class="line">        <span class="keyword">final</span> List&lt;Integer&gt; ids = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">        ids.add(<span class="number">1</span>);</div><div class="line">        ids.add(<span class="number">2</span>);</div><div class="line">        ids.add(<span class="number">3</span>);</div><div class="line">        ids.add(<span class="number">6</span>);</div><div class="line">        ids.add(<span class="number">7</span>);</div><div class="line">        ids.add(<span class="number">9</span>);</div><div class="line">        Map&lt;String, Object&gt; params = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</div><div class="line">        params.put(<span class="string">"ids"</span>, ids);</div><div class="line">        params.put(<span class="string">"title"</span>, <span class="string">"中国"</span>);</div><div class="line">        List&lt;Blog&gt; blogs = blogMapper.dynamicForeach3Test(params);</div><div class="line">        <span class="keyword">for</span> (Blog blog : blogs)</div><div class="line">            System.out.println(blog);</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+        <p>在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。</p>
+<h3 id="查询速度慢的原因"><a href="#查询速度慢的原因" class="headerlink" title="查询速度慢的原因"></a>查询速度慢的原因</h3><p>1、没有索引或者没有用到索引（这是查询慢最常见的问题，是程序设计的缺陷）</p>
+<p>2、I/O 吞吐量小，形成了瓶颈效应。</p>
+<p>3、没有创建计算列导致查询不优化。</p>
+<p>4、内存不足</p>
+<p>5、网络速度慢</p>
+<p>6、查询出的数据量过大（可采用多次查询，其他的方法降低数据量）</p>
+<p>7、锁或者死锁（这是查询慢最常见的问题，是程序设计的缺陷）</p>
+<p>8、sp_lock,sp_who,活动的用户查看,原因是读写竞争资源。</p>
+<p>9、返回了不必要的行和列  </p>
+<p>10、查询语句不好，没有优化  </p>
+<hr>
+<h3 id="30-种-SQL-查询语句的优化方法："><a href="#30-种-SQL-查询语句的优化方法：" class="headerlink" title="30 种 SQL 查询语句的优化方法："></a>30 种 SQL 查询语句的优化方法：</h3><p>1、应尽量避免在 where 子句中使用 != 或者 &lt;&gt; 操作符，否则将引擎放弃使用索引而进行全表扫描。</p>
+<p>2、应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">is</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<p>可以在 num 上设置默认值 0 ，确保表中 num 列没有 null 值，然后这样查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = <span class="number">0</span>;</div></pre></td></tr></table></figure>
+<p>3、对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。</p>
+<p>4、尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = <span class="number">10</span> <span class="keyword">or</span> <span class="keyword">num</span> = <span class="number">20</span>;</div></pre></td></tr></table></figure>
+<p>可以这样查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = <span class="number">10</span></div><div class="line"><span class="keyword">union</span> all</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = <span class="number">20</span>;</div></pre></td></tr></table></figure>
+<p>5、下面的查询也将导致全表扫描：（不能前置百分号）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'%abc%'</span>;</div></pre></td></tr></table></figure>
+<p>若要提高效率，可以考虑全文检索。</p>
+<p>6、in 和 not in 也要慎用，否则会导致全表扫描，如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">in</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure>
+<p>对于连续的数值，能用 between 就不要用 in 了：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">between</span> <span class="number">1</span> <span class="keyword">and</span> <span class="number">3</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> xx,phone <span class="keyword">FROM</span> send  a <span class="keyword">JOIN</span> (</div><div class="line"> <span class="keyword">select</span> <span class="string">'13891030091'</span> phone  <span class="keyword">union</span> <span class="keyword">select</span> <span class="string">'13992085916'</span> …………  <span class="keyword">UNION</span>  <span class="keyword">SELECT</span> <span class="string">'13619100234'</span> ) b </div><div class="line">  <span class="keyword">on</span>  a.Phone=b.phone</div><div class="line"><span class="comment">--替代下面  很多数据隔开的时候</span></div><div class="line"><span class="keyword">in</span>(<span class="string">'13891030091'</span>,<span class="string">'13992085916'</span>,<span class="string">'13619100234'</span>…………)</div></pre></td></tr></table></figure>
+<p>7、如果在 where 子句中使用参数，也会导致全表扫描。因为 SQL 只有在运行时才会解析局部变量，但优化程序不能将访问计划的选择到运行时；它必须在编译时进行选择。然而，如果在编译时简历访问计划，变量的值还是未知的，因而无法作为索引选择的输入项。如下面语句将进行全表扫描：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = @<span class="keyword">num</span>;</div></pre></td></tr></table></figure>
+<p>可以改为强制查询使用索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">with</span>(<span class="keyword">index</span>(索引名)) <span class="keyword">where</span> <span class="keyword">num</span> = @<span class="keyword">num</span>;</div></pre></td></tr></table></figure>
+<p>8、应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span>/<span class="number">2</span> = <span class="number">100</span>;</div></pre></td></tr></table></figure>
+<p>应改为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">num</span> = <span class="number">100</span> * <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>9、应尽量避免在 where 子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">substring</span>(<span class="keyword">name</span>, <span class="number">1</span>, <span class="number">3</span>) = ’abc’–<span class="keyword">name</span>;  //以abc开头的id</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">datediff</span>(<span class="keyword">day</span>,createdate,’<span class="number">2005</span><span class="number">-11</span><span class="number">-30</span>′) = <span class="number">0</span>–’<span class="number">2005</span><span class="number">-11</span><span class="number">-30</span>′;  //生成的id</div></pre></td></tr></table></figure>
+<p>应改为:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> ‘abc%’</div><div class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> t <span class="keyword">where</span> createdate &gt;= ’<span class="number">2005</span><span class="number">-11</span><span class="number">-30</span>′ <span class="keyword">and</span> createdate &lt; ’<span class="number">2005</span><span class="number">-12</span><span class="number">-1</span>′;</div></pre></td></tr></table></figure>
+<p>10、不要在 where 子句中的 “=” 左边进行函数，算术运算或者其他表达式运算，否则系统将可能无法正确使用索引。</p>
+<p>11、在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使用，并且应尽可能的让字段顺序与索引顺序相一致。</p>
+<p>12、不要些一些没有意义的查询，如需要生成一个空表结构：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> col1,col2 <span class="keyword">into</span> #t <span class="keyword">from</span> t <span class="keyword">where</span> <span class="number">1</span>=<span class="number">0</span>;</div></pre></td></tr></table></figure>
+<p>这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> #t(…)</div></pre></td></tr></table></figure>
+<p>13、很多时候用 exists 代替 in 是一个好的选择：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">in</span>(<span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> b);</div></pre></td></tr></table></figure>
+<p>用下面的语句替换：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> b <span class="keyword">where</span> <span class="keyword">num</span>=a.num);</div></pre></td></tr></table></figure>
+<p>14、并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，如一表中有字段 sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。</p>
+<p>15、索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有必要。</p>
+<p>16、应尽可能的避免更新 clustered 索引数据列，因为 clustered 索引数据列的顺序就是表记录的物理存储顺序，一旦该列值改变将导致整个表记录的顺序的调整，会耗费相当大的资源。若应用系统需要频繁更新 clustered 索引数据列，那么需要考虑是否应将该索引建为 clustered 索引。</p>
+<p>17、尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会 逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。</p>
+<p>18、尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p>
+<p>19、任何地方都不要使用 <code>select * from t</code> ，用具体的字段列表代替 <code>*</code>，不要返回用不到的任何字段。</p>
+<p>20、尽量使用表变量来代替临时表。如果表变量包含大量数据，请注意索引非常有限（只有主键索引）。</p>
+<p>21、避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
+<p>22、临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使用导出表。</p>
+<p>23、在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先 create table，然后 insert。</p>
+<p>24、如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。</p>
+<p>25、尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。</p>
+<p>26、使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。</p>
+<p>27、与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时 间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。</p>
+<p>28、在所有的存储过程和触发器的开始处设置 SET NOCOUNT ON ，在结束时设置 SET NOCOUNT OFF 。无需在执行存储过程和触发器的每个语句后向客户端发送 DONE_IN_PROC 消息。</p>
+<p>29、尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。</p>
+<p>30、尽量避免大事务操作，提高系统并发能力。</p>
+
       
 
       
@@ -295,11 +301,7 @@ separator 表示在每次进行">
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">foreach</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
         		</li>
       		
 		</ul>
@@ -355,7 +357,7 @@ separator 表示在每次进行">
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3awW7rMAwEwP7/T+cBvRZ2dynnoZHGp6CJbY0OLEXy6yu+Xt/Xz89Xv/z5m+TvV7957MLAwPhYxuv2umLcvzJfVvLeiIqBgXEAYz3Iri80fy8GBgbGfZC9uitZyv1dGBgYGO8LuPnT8uQPAwMDY3aIzQ+3bWXsPqw/fBbHwMD4QMZKY+Ddn/9TfwMDA+MPM16jq00N2wBarwcDA2NrRpvSrY9N5K3Q/ECLgYGxN2MW+NpxijzhGzZNMTAwDmDkhbC2ndCW/mfFOwwMjL0Zz2ZZ7VLa0Y18KzEwMHZi5K95qtmZJJT1vwEMDIwDGO04RVIOy5ebP+Hy7RgYGEcy2pQxCZTtiFjezsTAwDiBkYTR/Ej5bLIYpY8YGBhbM/Kv85Rxlvy1bc5fQjkGBsZGjPWi2CxEzlqnUTcDAwNja8YMkN/VHlyLzcLAwNiakQfQqEAfLyUvw9XfYmBgbMdI0rVkcflzWna0BRgYGFsz2kRtpTE5SzqL7cDAwDiA0R4a87BYH0TLwh8GBsZpjByWf5u/Zdh3xcDAOIDRNiZnqeHsOcMQjIGBsRHjVV7FAER8AJ4NXtQnZgwMjI9l5NfSAERZtku2rE4WMTAwPpwxC7Ir+7SeVl6OXGBgYGzNyItlychFW3qb1dAwMDAw2sJ9vgWzo+wv68HAwMBYGKe4v/ct52wMDIxNGfmYVz5I0Y6F1aNgGBgYxzDWGwNtg/Mp3sP9DQwMjL/I+AeIgBkG75CrxgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACK0lEQVR42u3ay26DQAwF0Pz/T1Opq24Grj2kEubMKqIRcLJw/fp84nP8nuT68edUr6++c9vBwMB4LOM4PauXWP01P6ufI78zBgbG2xjnwbT34Dzg5s9dXsfAwMCIA2Uv4CZhHQMDAyNn5CE1+by6PwYGBkaviM0Da/JyOfjmWhwDA+OBjOpg4D8/f3G+gYGB8RDGTkM/aZxVh5fNYhgDA2M0I0nFemVt7xXPE8eLoIyBgfEaRr6wlZe71eFoLzHFwMCYyji/RZ78JYFypw138SYYGBivYVSL1f2hY5J6RsEXAwPjBYzePOHeJlrCW/5kGBgYoxl5YveNGWI1EYzeBwMDYxyjl8YlQXO/3dYcXmJgYAxl7MTpXonbK5WX1zEwMF7AyENhHmp3MrfqdQwMjNmM/YftDyDzNDRazsDAwBjH2L9db7SQDAYKwwMMDIwXMHrLE8lQIf+c/zQXk1gMDIxxjN5r9b5ZDeLl8QAGBsZQxk6Ay1tjeQLabPNhYGCMZuQBd5+xE17LSSEGBsYgRnXpobcidldaGdXiGBgY4xjJw6qnGjTvei4GBsZUxlE8+cpFdQxQXea4aLdhYGAMYvTCcbU+robd/J5b/1UwMDAexchXLnJMrzyutucwMDDexsgXI3rjyV5zrTyPxcDAwIjXIKoLXjc04zAwMDA2ViJ6ieZWKw0DA2Moo1rE9krZfG2iPBjAwMAYzegF5eqYc78xd8OKBgYGxvMYPxERCj/AevcDAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -369,18 +371,9 @@ separator 表示在每次进行">
   
 <nav id="article-nav">
   
-    <a href="/2017/04/13/Hexo-yilia-changyan/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Github pages + Hexo 博客 yilia 主题使用畅言评论系统
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/05/String-new/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于String s = new String(&quot;xyz&quot;); 创建几个对象的问题</div>
+    <a href="/2017/04/23/feiji/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记录下自己第一次坐飞机的感受</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -399,7 +392,7 @@ separator 表示在每次进行">
 
   <section id="comments">
 <!--高速版，加载速度快，使用前需测试页面的兼容性-->
-<div id="SOHUCS" sid="MyBatis的foreach语句详解"  style="padding: 0px 30px 0px 46px;"></div>
+<div id="SOHUCS" sid="MySQL 处理海量数据时的一些优化查询速度方法"  style="padding: 0px 30px 0px 46px;"></div>
 <script>
   (function(){
     var appid = 'cysWCg9Ij',
