@@ -35,7 +35,7 @@
 线程：在进程中独立运行的子任务，比如 QQ.exe 进程中就有很多线程在运行，下载文件线程、发送消息线程、语音线程、视频线程等。
 多线程优点：我们电脑可以同时操作不同">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/thread-state.jpg">
-<meta property="og:updated_time" content="2017-06-04T13:05:18.813Z">
+<meta property="og:updated_time" content="2017-06-04T13:13:43.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Java 多线程编程核心技术》学习笔记及总结">
 <meta name="twitter:description" content="第一章 —— Java 多线程技能线程技术点：
@@ -236,17 +236,17 @@
 <h3 id="isAlive-方法"><a href="#isAlive-方法" class="headerlink" title="isAlive() 方法"></a>isAlive() 方法</h3><p>判断当前线程是否处于活动状态（已经启动但未终止）</p>
 <h3 id="sleep-方法"><a href="#sleep-方法" class="headerlink" title="sleep() 方法"></a>sleep() 方法</h3><p>在制定的毫秒数内让当前“正在执行的线程（this.currentThread() 返回的线程）”休眠（暂停执行）。</p>
 <h3 id="getId-方法"><a href="#getId-方法" class="headerlink" title="getId() 方法"></a>getId() 方法</h3><p>获取线程的唯一标识</p>
-<h3 id="停止线程"><a href="#停止线程" class="headerlink" title="停止线程"></a>停止线程</h3><p>可以使用 <del>Thread.stop()<del> 方法，但最好不要用，因为这个方法是不安全的，已经弃用作废了。</del></del></p>
+<h3 id="停止线程"><a href="#停止线程" class="headerlink" title="停止线程"></a>停止线程</h3><p>可以使用 <del>Thread.stop()</del> 方法，但最好不要用，因为这个方法是不安全的，已经弃用作废了。</p>
 <p>大多数停止一个线程是使用 Thread.interrupt() 方法</p>
 <h4 id="判断线程是否是停止状态"><a href="#判断线程是否是停止状态" class="headerlink" title="判断线程是否是停止状态"></a>判断线程是否是停止状态</h4><ul>
 <li><p>interrupted()</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//测试当前线程是否已经中断了，这个线程的中断状态会被这个方法清除。</span></div><div class="line"><span class="comment">//换句话说，如果连续两次调用了这个方法，第二次调用的时候将会返回 false ，</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">interrupted</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> currentThread().isInterrupted(<span class="keyword">true</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>isInterrupted()</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">               <span class="comment">//测试线程是否已经中断了，线程的状态不会受这个方法的影响</span></div><div class="line">               <span class="comment">//线程中断被忽略，因为线程处于中断下不处于活动状态的线程由此返回false的方法反映出来</span></div><div class="line">               <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterrupted</span><span class="params">()</span> </span>&#123;</div><div class="line">                       <span class="keyword">return</span> isInterrupted(<span class="keyword">false</span>);</div><div class="line">                &#125;</div><div class="line">               <span class="comment">/**</span></div><div class="line">* Tests if some Thread has been interrupted.  The interrupted state</div><div class="line">* is reset or not based on the value of ClearInterrupted that is</div><div class="line">* passed.</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">isInterrupted</span><span class="params">(<span class="keyword">boolean</span> ClearInterrupted)</span></span>;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 在沉睡中停止</div><div class="line"></div><div class="line">​```java</div><div class="line">public class MyThread2 extends Thread</div><div class="line">&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        try &#123;</div><div class="line">            System.out.println(&quot;run start&quot;);</div><div class="line">            Thread.sleep(20000);</div><div class="line">            System.out.println(&quot;run end&quot;);</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            System.out.println(&quot;run catch &quot;+this.isInterrupted());</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        try &#123;</div><div class="line">            MyThread2 t2 = new MyThread2();</div><div class="line">            t2.start();</div><div class="line">            Thread.sleep(200);</div><div class="line">            t2.interrupt();</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            System.out.println(&quot;main catch&quot;);</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(&quot;main end&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">                  <span class="comment">//测试线程是否已经中断了，线程的状态不会受这个方法的影响</span></div><div class="line">                  <span class="comment">//线程中断被忽略，因为线程处于中断下不处于活动状态的线程由此返回false的方法反映出来</span></div><div class="line">                  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterrupted</span><span class="params">()</span> </span>&#123;</div><div class="line">                          <span class="keyword">return</span> isInterrupted(<span class="keyword">false</span>);</div><div class="line">                   &#125;</div><div class="line">                  <span class="comment">/**</span></div><div class="line">* Tests if some Thread has been interrupted.  The interrupted state</div><div class="line">* is reset or not based on the value of ClearInterrupted that is</div><div class="line">* passed.</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">isInterrupted</span><span class="params">(<span class="keyword">boolean</span> ClearInterrupted)</span></span>;</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h4 id="在沉睡中停止"><a href="#在沉睡中停止" class="headerlink" title="在沉睡中停止"></a>在沉睡中停止</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread2</span> <span class="keyword">extends</span> <span class="title">Thread</span></span></div><div class="line">&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            System.out.println(<span class="string">"run start"</span>);</div><div class="line">            Thread.sleep(<span class="number">20000</span>);</div><div class="line">            System.out.println(<span class="string">"run end"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            System.out.println(<span class="string">"run catch "</span>+<span class="keyword">this</span>.isInterrupted());</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            MyThread2 t2 = <span class="keyword">new</span> MyThread2();</div><div class="line">            t2.start();</div><div class="line">            Thread.sleep(<span class="number">200</span>);</div><div class="line">            t2.interrupt();</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            System.out.println(<span class="string">"main catch"</span>);</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(<span class="string">"main end"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>运行结果：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">run start</div><div class="line">main end</div><div class="line">run <span class="keyword">catch</span> <span class="keyword">false</span></div><div class="line">java.lang.InterruptedException: sleep interrupted</div><div class="line">	at java.lang.Thread.sleep(Native Method)</div><div class="line">	at com.zhisheng.thread.thread1.MyThread2.run(MyThread2.java:<span class="number">12</span>)</div></pre></td></tr></table></figure>
 <p>从运行结果来看，如果在 sleep 状态下停止某一线程，会进入 catch 语句，并清除停止状态值，使之变成 false。</p>
@@ -291,10 +291,15 @@
 <p>通过使用 volatile 关键字，强制的从公共内存中读取变量的值。使用 volatile 关键字增加了实例变量在多个线程之间的可见性，但 volatile 关键字最致命的缺点就是不支持原子性。</p>
 <p>关键字 synchronized 和 volatile 比较：</p>
 <ul>
-<li>关键字 volatile 是线程同步的轻量实现，所以 volatile 性能肯定要比 synchronized 要好，并且 volatile 只能修饰于变量，而 synchronized 可以修饰方法，以及代码块。</li>
-<li>多线程访问 volatile 不会发生阻塞，而 synchronized 会出现阻塞。</li>
-<li>volatile 能保证数据的可见性，但不能保证原子性；而 synchronized 可以保证原子性，也可以间接保证可见性，因为它会将私有内存和公有内存中的数据做同步。</li>
-<li>关键字 volatile 解决的是变量在多个线程之间的可见性；而 synchronized 关键字解决的是多个线程之间访问资源的同步性。</li>
+<li><p>关键字 volatile 是线程同步的轻量实现，所以 volatile 性能肯定要比 synchronized 要好，并且 volatile 只能修饰于变量，而 synchronized 可以修饰方法，以及代码块。</p>
+</li>
+<li><p>多线程访问 volatile 不会发生阻塞，而 synchronized 会出现阻塞。</p>
+</li>
+<li><p>volatile 能保证数据的可见性，但不能保证原子性；而 synchronized 可以保证原子性，也可以间接保证可见性，因为它会将私有内存和公有内存中的数据做同步。</p>
+</li>
+<li><p>关键字 volatile 解决的是变量在多个线程之间的可见性；而 synchronized 关键字解决的是多个线程之间访问资源的同步性。</p>
+<p>​</p>
+</li>
 </ul>
 <h2 id="第三章-——-线程间通信"><a href="#第三章-——-线程间通信" class="headerlink" title="第三章 —— 线程间通信"></a>第三章 —— 线程间通信</h2><p>技术点：</p>
 <ul>
@@ -725,6 +730,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
@@ -745,7 +754,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -754,10 +763,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,19 +786,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">文件</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+                <a href="javascript:void(0)" class="js-tag color3">文件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -805,15 +806,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">旋转词</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">表达式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">循环队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -825,6 +826,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">循环队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
              
@@ -833,11 +838,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">邮件发送</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color5">邮件发送</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -845,11 +850,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+                <a href="javascript:void(0)" class="js-tag color5">Filter过滤器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Filter过滤器</a>
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
             
             <div class="clearfix"></div>
