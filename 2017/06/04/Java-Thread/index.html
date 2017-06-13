@@ -35,7 +35,7 @@
 线程：在进程中独立运行的子任务，比如 QQ.exe 进程中就有很多线程在运行，下载文件线程、发送消息线程、语音线程、视频线程等。
 多线程优点：我们电脑可以同时操作不同">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/thread-state.jpg">
-<meta property="og:updated_time" content="2017-06-05T05:10:26.193Z">
+<meta property="og:updated_time" content="2017-06-13T10:42:19.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Java 多线程编程核心技术》学习笔记及总结">
 <meta name="twitter:description" content="第一章 —— Java 多线程技能线程技术点：
@@ -215,6 +215,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章-——-Java-多线程技能"><span class="toc-number">1.</span> <span class="toc-text">第一章 —— Java 多线程技能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程和线程的概念及多线程的优点"><span class="toc-number">1.1.</span> <span class="toc-text">进程和线程的概念及多线程的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用多线程"><span class="toc-number">1.2.</span> <span class="toc-text">使用多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#继承-Thread-类"><span class="toc-number">1.2.1.</span> <span class="toc-text">继承 Thread 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现-Runnable-接口"><span class="toc-number">1.2.2.</span> <span class="toc-text">实现 Runnable 接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#currentThread-方法"><span class="toc-number">1.3.</span> <span class="toc-text">currentThread() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isAlive-方法"><span class="toc-number">1.4.</span> <span class="toc-text">isAlive() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sleep-方法"><span class="toc-number">1.5.</span> <span class="toc-text">sleep() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getId-方法"><span class="toc-number">1.6.</span> <span class="toc-text">getId() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止线程"><span class="toc-number">1.7.</span> <span class="toc-text">停止线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#判断线程是否是停止状态"><span class="toc-number">1.7.1.</span> <span class="toc-text">判断线程是否是停止状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在沉睡中停止"><span class="toc-number">1.7.2.</span> <span class="toc-text">在沉睡中停止</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#在停止中沉睡"><span class="toc-number">1.7.3.</span> <span class="toc-text">在停止中沉睡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#能停止的线程-——-暴力停止"><span class="toc-number">1.7.4.</span> <span class="toc-text">能停止的线程 —— 暴力停止</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#暂停线程"><span class="toc-number">1.8.</span> <span class="toc-text">暂停线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#suspend-和-resume-方法的使用"><span class="toc-number">1.8.1.</span> <span class="toc-text">suspend 和 resume 方法的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yield-方法"><span class="toc-number">1.9.</span> <span class="toc-text">yield 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程的优先级"><span class="toc-number">1.10.</span> <span class="toc-text">线程的优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#守护线程"><span class="toc-number">1.11.</span> <span class="toc-text">守护线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-——-对象及变量的并发访问"><span class="toc-number">2.</span> <span class="toc-text">第二章 —— 对象及变量的并发访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized-同步方法"><span class="toc-number">2.1.</span> <span class="toc-text">synchronized 同步方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法内的变量为线程安全"><span class="toc-number">2.1.1.</span> <span class="toc-text">方法内的变量为线程安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例变量非线程安全"><span class="toc-number">2.1.2.</span> <span class="toc-text">实例变量非线程安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#脏读"><span class="toc-number">2.1.3.</span> <span class="toc-text">脏读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#synchronized-锁重入"><span class="toc-number">2.1.4.</span> <span class="toc-text">synchronized 锁重入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同步不具有继承性"><span class="toc-number">2.1.5.</span> <span class="toc-text">同步不具有继承性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized-同步语句块"><span class="toc-number">2.2.</span> <span class="toc-text">synchronized 同步语句块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#synchronized-代码块间的同步性"><span class="toc-number">2.2.1.</span> <span class="toc-text">synchronized 代码块间的同步性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将任意对象作为对象监视器"><span class="toc-number">2.2.2.</span> <span class="toc-text">将任意对象作为对象监视器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#静态同步-synchronized-方法与-synchronized-class-代码块"><span class="toc-number">2.2.3.</span> <span class="toc-text">静态同步 synchronized 方法与  synchronized(class) 代码块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多线程的死锁"><span class="toc-number">2.2.4.</span> <span class="toc-text">多线程的死锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#volatile-关键字"><span class="toc-number">2.3.</span> <span class="toc-text">volatile 关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章-——-线程间通信"><span class="toc-number">3.</span> <span class="toc-text">第三章 —— 线程间通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#等待-通知机制"><span class="toc-number">3.1.</span> <span class="toc-text">等待/通知机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#线程状态示意图："><span class="toc-number">3.1.1.</span> <span class="toc-text">线程状态示意图：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生产者-消费者模式实现"><span class="toc-number">3.1.2.</span> <span class="toc-text">生产者/消费者模式实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Join-方法的使用"><span class="toc-number">3.2.</span> <span class="toc-text">Join 方法的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类-ThreadLocal-的使用"><span class="toc-number">3.3.</span> <span class="toc-text">类  ThreadLocal  的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#get-方法"><span class="toc-number">3.3.1.</span> <span class="toc-text">get() 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InheritableThreadLocal-类的使用"><span class="toc-number">3.4.</span> <span class="toc-text">InheritableThreadLocal 类的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章-——-Lock-的使用"><span class="toc-number">4.</span> <span class="toc-text">第四章 ——  Lock 的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-ReentrantLock-类"><span class="toc-number">4.1.</span> <span class="toc-text">使用 ReentrantLock 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Condition"><span class="toc-number">4.2.</span> <span class="toc-text">Condition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正确使用-Condition-实现等待-通知"><span class="toc-number">4.3.</span> <span class="toc-text">正确使用 Condition 实现等待/通知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-ReentrantReadWriteLock-类"><span class="toc-number">4.4.</span> <span class="toc-text">使用 ReentrantReadWriteLock 类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章-——-单例模式与多线程"><span class="toc-number">5.</span> <span class="toc-text">第六章 —— 单例模式与多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#立即加载模式-“饿汉模式”"><span class="toc-number">5.1.</span> <span class="toc-text">立即加载模式 / “饿汉模式”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#延迟加载-“-懒汉模式-”"><span class="toc-number">5.2.</span> <span class="toc-text">延迟加载 / “ 懒汉模式 ”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用静态内部类实现单例模式"><span class="toc-number">5.3.</span> <span class="toc-text">使用静态内部类实现单例模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化与反序列化的单例模式实现"><span class="toc-number">5.4.</span> <span class="toc-text">序列化与反序列化的单例模式实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-static-代码块实现单例模式"><span class="toc-number">5.5.</span> <span class="toc-text">使用 static 代码块实现单例模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用枚举数据类型实现单例模式"><span class="toc-number">5.6.</span> <span class="toc-text">使用枚举数据类型实现单例模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="第一章-——-Java-多线程技能"><a href="#第一章-——-Java-多线程技能" class="headerlink" title="第一章 —— Java 多线程技能"></a>第一章 —— Java 多线程技能</h2><p>线程技术点：</p>
@@ -739,11 +768,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -843,11 +872,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

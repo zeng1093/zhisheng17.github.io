@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20160812215943627">
 <meta property="og:image" content="http://img.blog.csdn.net/20160812220046041">
 <meta property="og:image" content="http://img.blog.csdn.net/20160812222233971">
-<meta property="og:updated_time" content="2017-04-13T14:20:08.868Z">
+<meta property="og:updated_time" content="2017-06-13T10:44:33.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决jdk1.8中发送邮件失败（handshake_failure）问题">
 <meta name="twitter:description" content="暑假在家做一个类似知乎的问答型网站（代码可见：Github/wenda  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个站内邮件通知系统（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：
@@ -197,6 +197,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>暑假在家做一个类似知乎的问答型网站（代码可见：<a href="https://github.com/1041218129/wenda" target="_blank" rel="external">Github/wenda</a>  喜欢的可以给个star或者自己fork然后修改，目前功能还未很完善），其中有一个<strong>站内邮件通知系统</strong>（这里简单的讲一个例子：如果用户登录的时候出现异常，那么就会通过邮件发送通知用户）。然而却碰到一个问题。问题错误信息如下：</p>
@@ -520,11 +549,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,11 +653,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Zhisheng的博客">
 <meta property="og:description" content="HashMap 和 Hashtable 的比较是 Java 面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。HashMap 的工作原理、ArrayList 与 Vector 的比较以及这个问题是有关 Java 集合框架的最经典的问题。Hashtable 是个过时的集合类，存在于 Java API 中很久了。在 Java 4 中被重写了，实现了 Map">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/1473414112000.png">
-<meta property="og:updated_time" content="2017-06-12T08:34:40.832Z">
+<meta property="og:updated_time" content="2017-06-13T10:37:50.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap、Hashtable、HashSet 和 ConcurrentHashMap 的比较">
 <meta name="twitter:description" content="HashMap 和 Hashtable 的比较是 Java 面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。HashMap 的工作原理、ArrayList 与 Vector 的比较以及这个问题是有关 Java 集合框架的最经典的问题。Hashtable 是个过时的集合类，存在于 Java API 中很久了。在 Java 4 中被重写了，实现了 Map">
@@ -185,6 +185,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HashMap-和-Hashtable-的区别"><span class="toc-number">1.</span> <span class="toc-text">HashMap 和 Hashtable 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#要注意的一些重要术语："><span class="toc-number">2.</span> <span class="toc-text">要注意的一些重要术语：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们能否让-HashMap-同步？"><span class="toc-number">3.</span> <span class="toc-text">我们能否让 HashMap 同步？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论"><span class="toc-number">4.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#先来些简单的问题"><span class="toc-number">5.</span> <span class="toc-text">先来些简单的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashMap的工作原理"><span class="toc-number">6.1.</span> <span class="toc-text">HashMap的工作原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">7.</span> <span class="toc-text">最后</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>HashMap 和 Hashtable 的比较是 Java 面试中的常见问题，用来考验程序员是否能够正确使用集合类以及是否可以随机应变使用多种思路解决问题。HashMap 的工作原理、ArrayList 与 Vector 的比较以及这个问题是有关 Java 集合框架的最经典的问题。Hashtable 是个过时的集合类，存在于 Java API 中很久了。在 Java 4 中被重写了，实现了 Map 接口，所以自此以后也成了 Java 集合框架中的一部分。Hashtable 和 HashMap 在 Java 面试中相当容易被问到，甚至成为了集合框架面试题中最常被考的问题，所以在参加任何 Java 面试之前，都不要忘了准备这一题。<br><a id="more"></a><br>这篇文章中，我们不仅将会看到 HashMap 和 Hashtable 的区别，还将看到它们之间的相似之处。</p>
@@ -303,7 +332,7 @@
 <li><a href="http://blog.csdn.net/u010723709/article/details/48007881" target="_blank" rel="external">ConcurrentHashMap源码分析（JDK8版本）</a></li>
 </ul>
 <hr>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>谢谢阅读，如果可以的话欢迎大家转发和点赞。如需转载注明原地址就行。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>谢谢阅读，如果可以的话欢迎大家转发和点赞。如需转载注明<a href="www.54tianzhisheng.cn/2017/06/10/HashMap-Hashtable/">原地址</a>就行。</p>
 <p>群 528776268 欢迎各位大牛进群一起讨论。</p>
 <p><img src="http://ohfk1r827.bkt.clouddn.com/1473414112000.png" alt=""></p>
 
@@ -419,6 +448,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/06/13/Hexo-yilia-toc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hexo + yilia 主题实现文章目录
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/04/Java-Thread/" id="article-nav-older" class="article-nav-link-wrap">
@@ -581,11 +619,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,11 +723,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

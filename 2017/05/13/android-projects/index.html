@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://github.com/youlookwhat/CloudReader/raw/master/file/page_movie_03.png">
 <meta property="og:image" content="https://github.com/youlookwhat/CloudReader/raw/master/file/page_menu_01.png">
 <meta property="og:image" content="https://github.com/atguigu01/Shopping/raw/master/gif/%E7%A1%85%E8%B0%B7%E5%95%86%E5%9F%8E%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA.gif">
-<meta property="og:updated_time" content="2017-05-13T13:28:02.633Z">
+<meta property="og:updated_time" content="2017-06-13T10:41:04.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="源码大招：不服来战！撸这些完整项目，你不牛逼都难！">
 <meta name="twitter:description" content="经常有人问我有没有什么项目代码，我回复说去 Github 找，但是还是好多人不知道如何找到那些比较好的项目。
@@ -270,6 +270,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#菜鸟新闻"><span class="toc-number">1.</span> <span class="toc-text">菜鸟新闻</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KuaiChuan"><span class="toc-number">2.</span> <span class="toc-text">KuaiChuan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CoolShopping"><span class="toc-number">3.</span> <span class="toc-text">CoolShopping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RNPolymerPo"><span class="toc-number">4.</span> <span class="toc-text">RNPolymerPo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bilibili"><span class="toc-number">5.</span> <span class="toc-text">bilibili</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StockChart"><span class="toc-number">6.</span> <span class="toc-text">StockChart</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android精准计步器"><span class="toc-number">7.</span> <span class="toc-text">Android精准计步器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#菜鸟微博"><span class="toc-number">8.</span> <span class="toc-text">菜鸟微博</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在线云打印平台"><span class="toc-number">9.</span> <span class="toc-text">在线云打印平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#铜板街"><span class="toc-number">10.</span> <span class="toc-text">铜板街</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#礼物说"><span class="toc-number">11.</span> <span class="toc-text">礼物说</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IotXmpp"><span class="toc-number">12.</span> <span class="toc-text">IotXmpp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lives"><span class="toc-number">13.</span> <span class="toc-text">Lives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CoCoin"><span class="toc-number">14.</span> <span class="toc-text">CoCoin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppLock"><span class="toc-number">15.</span> <span class="toc-text">AppLock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jianshi-简诗"><span class="toc-number">16.</span> <span class="toc-text">jianshi 简诗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#storage-chooser"><span class="toc-number">17.</span> <span class="toc-text">storage-chooser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LQRWeChat"><span class="toc-number">18.</span> <span class="toc-text">LQRWeChat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PonyExpress-小马快递"><span class="toc-number">19.</span> <span class="toc-text">PonyExpress  小马快递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudReader-云阅"><span class="toc-number">20.</span> <span class="toc-text">CloudReader  云阅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硅谷商城"><span class="toc-number">21.</span> <span class="toc-text">硅谷商城</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>经常有人问我有没有什么项目代码，我回复说去 Github 找，但是还是好多人不知道如何找到那些比较好的项目。</p>
@@ -699,11 +728,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -803,11 +832,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

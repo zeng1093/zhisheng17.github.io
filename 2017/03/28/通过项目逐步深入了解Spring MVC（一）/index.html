@@ -33,7 +33,7 @@ Spring MVC框架原理（掌握）
 <meta property="og:image" content="http://img.blog.csdn.net/20161219214558360?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20161219214629187?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20161219214646359?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-04-13T14:22:27.702Z">
+<meta property="og:updated_time" content="2017-06-13T10:46:02.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Spring MVC（一）">
 <meta name="twitter:description" content="相关阅读：本文档和项目代码地址：https://github.com/zhisheng17/springmvc
@@ -211,6 +211,35 @@ Spring MVC框架原理（掌握）
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关阅读："><span class="toc-number">1.</span> <span class="toc-text">相关阅读：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-MVC基础知识"><span class="toc-number"></span> <span class="toc-text">Spring MVC基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-MVC高级应用"><span class="toc-number"></span> <span class="toc-text">Spring MVC高级应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-MVC-框架"><span class="toc-number"></span> <span class="toc-text">Spring MVC 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Spring-MVC？"><span class="toc-number">1.</span> <span class="toc-text">什么是Spring MVC？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-MVC"><span class="toc-number">2.</span> <span class="toc-text">Web MVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-MVC-框架-1"><span class="toc-number">3.</span> <span class="toc-text">Spring MVC 框架</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="相关阅读："><a href="#相关阅读：" class="headerlink" title="相关阅读："></a>相关阅读：</h3><p>本文档和项目代码地址：<a href="https://github.com/zhisheng17/springmvc" target="_blank" rel="external">https://github.com/zhisheng17/springmvc</a></p>
@@ -569,11 +598,11 @@ Spring MVC框架原理（掌握）
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,11 +702,11 @@ Spring MVC框架原理（掌握）
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

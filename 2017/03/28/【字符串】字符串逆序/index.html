@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20170121132729920?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170121132805577?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170121132820828?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-04-13T14:17:22.296Z">
+<meta property="og:updated_time" content="2017-06-13T10:40:36.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串">
 <meta name="twitter:description" content="题目一：如果一个字符串 str ，把字符串 str 前面的任意部分挪到后面去形成的字符串叫做 str 的旋转词。比如 str = “ 1234 ” ， 那么 str 的旋转词有 “ 1234 ” ， “ 2341 ” ， “ 3412 ” ， “ 4123 ” 。给定两个字符串 a 和 b ，请判断 a 和 b 是否互为旋转词？">
@@ -190,6 +190,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目一："><span class="toc-number">1.</span> <span class="toc-text">题目一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-number">2.</span> <span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#题目二："><span class="toc-number">3.</span> <span class="toc-text">题目二：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路：-1"><span class="toc-number">4.</span> <span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#题目三："><span class="toc-number">5.</span> <span class="toc-text">题目三：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路：-2"><span class="toc-number">6.</span> <span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#题目四："><span class="toc-number">7.</span> <span class="toc-text">题目四：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路：-3"><span class="toc-number">8.</span> <span class="toc-text">思路：</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h4><p>如果一个字符串 str ，把字符串 str 前面的任意部分挪到后面去形成的字符串叫做 str 的旋转词。比如 str = “ 1234 ” ， 那么 str 的旋转词有 “ 1234 ” ， “ 2341 ” ， “ 3412 ” ， “ 4123 ” 。给定两个字符串 a 和 b ，请判断 a 和 b 是否互为旋转词？<br><a id="more"></a><br>举例：</p>
@@ -534,11 +563,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -638,11 +667,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

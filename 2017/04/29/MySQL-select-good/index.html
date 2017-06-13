@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/29/MySQL-select-good/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
 <meta property="og:description" content="在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。">
-<meta property="og:updated_time" content="2017-04-29T14:25:22.032Z">
+<meta property="og:updated_time" content="2017-06-13T10:43:18.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL 处理海量数据时的一些优化查询速度方法">
 <meta name="twitter:description" content="在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。">
@@ -183,6 +183,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询速度慢的原因"><span class="toc-number">1.</span> <span class="toc-text">查询速度慢的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30-种-SQL-查询语句的优化方法："><span class="toc-number">2.</span> <span class="toc-text">30 种 SQL 查询语句的优化方法：</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>在参与实际项目中，当 MySQL 表的数据量达到百万级时，普通的 SQL 查询效率呈直线下降，而且如果 where 中的查询条件较多时，其查询速度无法容忍。想想可知，假如我们查询淘宝的一个订单详情，如果查询时间高达几十秒，这么高的查询延时，任何用户都会抓狂。因此如何提高 SQL 语句查询效率，显得十分重要。<br><a id="more"></a></p>
@@ -538,11 +567,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,11 +671,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

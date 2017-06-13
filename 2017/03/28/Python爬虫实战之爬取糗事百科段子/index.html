@@ -22,7 +22,7 @@ Spider1-qiushibaike.py：爬取糗事百科的8小时最新页的段子。包含
 Spider2-qiushibaike.py：在Spider1-qiushibaike.py基础上，引入类和方法，进行优化和封装，">
 <meta property="og:image" content="http://img.blog.csdn.net/20160825154604645">
 <meta property="og:image" content="http://img.blog.csdn.net/20160825154628114">
-<meta property="og:updated_time" content="2017-04-13T14:19:19.809Z">
+<meta property="og:updated_time" content="2017-06-13T10:43:45.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python爬虫实战之爬取糗事百科段子">
 <meta name="twitter:description" content="完整代码地址：Python爬虫实战之爬取糗事百科段子程序代码详解：
@@ -195,6 +195,35 @@ Spider2-qiushibaike.py：在Spider1-qiushibaike.py基础上，引入类和方法
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#完整代码地址：Python爬虫实战之爬取糗事百科段子"><span class="toc-number">1.</span> <span class="toc-text">完整代码地址：Python爬虫实战之爬取糗事百科段子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序代码详解："><span class="toc-number">2.</span> <span class="toc-text">程序代码详解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本爬虫目标："><span class="toc-number">3.</span> <span class="toc-text">本爬虫目标：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-确定URL并抓取页面代码"><span class="toc-number">4.</span> <span class="toc-text">1.确定URL并抓取页面代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-提取某一页的所有段子"><span class="toc-number">5.</span> <span class="toc-text">2.提取某一页的所有段子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-完善交互，设计面向对象模式"><span class="toc-number">6.</span> <span class="toc-text">3.完善交互，设计面向对象模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完善更新版爬虫代码"><span class="toc-number">7.</span> <span class="toc-text">完善更新版爬虫代码</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="完整代码地址：Python爬虫实战之爬取糗事百科段子"><a href="#完整代码地址：Python爬虫实战之爬取糗事百科段子" class="headerlink" title="完整代码地址：Python爬虫实战之爬取糗事百科段子"></a>完整代码地址：<a href="https://github.com/zhisheng17/Python-Projects/tree/master/qiushibaike" target="_blank" rel="external">Python爬虫实战之爬取糗事百科段子</a></h3><h3 id="程序代码详解："><a href="#程序代码详解：" class="headerlink" title="程序代码详解："></a>程序代码详解：</h3><ol>
@@ -529,11 +558,11 @@ Spider2-qiushibaike.py：在Spider1-qiushibaike.py基础上，引入类和方法
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,11 +662,11 @@ Spider2-qiushibaike.py：在Spider1-qiushibaike.py基础上，引入类和方法
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

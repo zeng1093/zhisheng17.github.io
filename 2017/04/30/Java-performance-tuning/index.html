@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/30/Java-performance-tuning/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
 <meta property="og:description" content="昨天写了篇文章 《MySQL 处理海量数据时的一些优化查询速度方法》 ，其实开发中不止数据库要优化，还有我们本身的开发代码也需要优化，这样我们开发的产品才能够得到极致的体验。也许有些人认为这些细小的地方没有啥好修改的，改与不改对运行效率没啥大的影响？首先在我们本地一个人测试下效率是不怎么明显，但是如果到发布上线后，你的用户有几百万，甚至上千万，这些用户同时访问你的网站，那么你的网站是否经得住考验呢">
-<meta property="og:updated_time" content="2017-04-30T05:50:51.245Z">
+<meta property="og:updated_time" content="2017-06-13T10:42:10.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 性能调优需要格外注意的细节">
 <meta name="twitter:description" content="昨天写了篇文章 《MySQL 处理海量数据时的一些优化查询速度方法》 ，其实开发中不止数据库要优化，还有我们本身的开发代码也需要优化，这样我们开发的产品才能够得到极致的体验。也许有些人认为这些细小的地方没有啥好修改的，改与不改对运行效率没啥大的影响？首先在我们本地一个人测试下效率是不怎么明显，但是如果到发布上线后，你的用户有几百万，甚至上千万，这些用户同时访问你的网站，那么你的网站是否经得住考验呢">
@@ -183,6 +183,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码优化细节"><span class="toc-number">1.</span> <span class="toc-text">代码优化细节</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>昨天写了篇文章 <a href="http://www.54tianzhisheng.cn/2017/04/29/MySQL-select-good/" target="_blank" rel="external">《MySQL 处理海量数据时的一些优化查询速度方法》</a> ，其实开发中不止数据库要优化，还有我们本身的开发代码也需要优化，这样我们开发的产品才能够得到极致的体验。也许有些人认为这些细小的地方没有啥好修改的，改与不改对运行效率没啥大的影响？首先在我们本地一个人测试下效率是不怎么明显，但是如果到发布上线后，你的用户有几百万，甚至上千万，这些用户同时访问你的网站，那么你的网站是否经得住考验呢，效率那高不高呢，如果效率不高，那么需要多出很多买服务器的经费呢，所以想想还是很有必要注意这些小的细节。今天就讲讲一些 Java 性能调优需要格外注意的一些细节。</p>
@@ -615,11 +644,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,11 +748,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

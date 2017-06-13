@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/6.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/7.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/yuanblog.jpg">
-<meta property="og:updated_time" content="2017-04-13T14:22:00.138Z">
+<meta property="og:updated_time" content="2017-06-13T10:45:53.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Mybatis（一）">
 <meta name="twitter:description" content="Mybatis 和 SpringMVC 通过订单商品案例驱动
@@ -211,6 +211,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#如果觉得不错的话，欢迎给个-star-，-如果你想完善这个项目的话，你也可以-fork-后修改然后推送给我。"><span class="toc-number">1.</span> <span class="toc-text">如果觉得不错的话，欢迎给个 star ， 如果你想完善这个项目的话，你也可以 fork 后修改然后推送给我。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基础知识："><span class="toc-number"></span> <span class="toc-text">基础知识：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对原生态-jdbc-程序（单独使用-jdbc-开发）问题总结"><span class="toc-number"></span> <span class="toc-text">对原生态 jdbc 程序（单独使用 jdbc 开发）问题总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、环境"><span class="toc-number">1.</span> <span class="toc-text">1、环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、创建数据库"><span class="toc-number">2.</span> <span class="toc-text">2、创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、JDBC-程序"><span class="toc-number">3.</span> <span class="toc-text">3、JDBC 程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、问题总结"><span class="toc-number">4.</span> <span class="toc-text">4、问题总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis框架原理（掌握）"><span class="toc-number"></span> <span class="toc-text">Mybatis框架原理（掌握）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Mybatis-是什么？"><span class="toc-number">1.</span> <span class="toc-text">1、Mybatis 是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Mybatis-框架"><span class="toc-number">2.</span> <span class="toc-text">2、Mybatis 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis入门程序"><span class="toc-number"></span> <span class="toc-text">Mybatis入门程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、需求"><span class="toc-number">1.</span> <span class="toc-text">1、需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、环境"><span class="toc-number">2.</span> <span class="toc-text">2、环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、-log4j-properties"><span class="toc-number">3.</span> <span class="toc-text">3、 log4j.properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、工程结构"><span class="toc-number">4.</span> <span class="toc-text">4、工程结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、SqlMapConfig-xml"><span class="toc-number">5.</span> <span class="toc-text">5、SqlMapConfig.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、创建-po-类"><span class="toc-number">6.</span> <span class="toc-text">6、创建 po 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、根据用户-id（主键）查询用户信息"><span class="toc-number">7.</span> <span class="toc-text">7、根据用户 id（主键）查询用户信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、根据用户名称模糊查询用户信息列表"><span class="toc-number">8.</span> <span class="toc-text">8、根据用户名称模糊查询用户信息列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提示："><span class="toc-number">9.</span> <span class="toc-text">提示：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意："><span class="toc-number"></span> <span class="toc-text">注意：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、-和-的区别"><span class="toc-number">1.</span> <span class="toc-text">1、#{ } 和 ${ } 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、parameterType-和-resultType-区别"><span class="toc-number">2.</span> <span class="toc-text">2、parameterType 和 resultType 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、selectOne-和-selectList-区别"><span class="toc-number">3.</span> <span class="toc-text">3、selectOne 和 selectList 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、添加用户"><span class="toc-number">4.</span> <span class="toc-text">9、添加用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、自增主键返回-与-非自增主键返回"><span class="toc-number">5.</span> <span class="toc-text">10、自增主键返回 与 非自增主键返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、删除用户"><span class="toc-number">6.</span> <span class="toc-text">11、删除用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12、更新用户信息"><span class="toc-number">7.</span> <span class="toc-text">12、更新用户信息</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>Mybatis 和 SpringMVC 通过订单商品案例驱动</p>
@@ -703,11 +732,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -807,11 +836,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

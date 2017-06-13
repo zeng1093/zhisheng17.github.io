@@ -32,7 +32,7 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test6.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test7.jpg">
 <meta property="og:image" content="http://ohfk1r827.bkt.clouddn.com/Test8.jpg">
-<meta property="og:updated_time" content="2017-04-13T14:21:15.257Z">
+<meta property="og:updated_time" content="2017-06-13T10:45:20.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过项目逐步深入了解Mybatis（二）">
 <meta name="twitter:description" content="转载请务必注明出处，原创不易！
@@ -206,6 +206,35 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis-解决-jdbc-编程的问题"><span class="toc-number">1.</span> <span class="toc-text">Mybatis 解决 jdbc 编程的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mybatis-与-Hibernate-不同"><span class="toc-number">2.</span> <span class="toc-text">Mybatis 与 Hibernate 不同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis-开发-dao"><span class="toc-number"></span> <span class="toc-text">Mybatis 开发 dao</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两种方法"><span class="toc-number">1.</span> <span class="toc-text">两种方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需求"><span class="toc-number">2.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sqlsession-的使用范围"><span class="toc-number">3.</span> <span class="toc-text">Sqlsession 的使用范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、SqlSessionFactoryBuilder"><span class="toc-number">4.</span> <span class="toc-text">1、SqlSessionFactoryBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、SqlSessionFactory"><span class="toc-number">5.</span> <span class="toc-text">2、SqlSessionFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、SqlSession"><span class="toc-number">6.</span> <span class="toc-text">3、SqlSession</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论："><span class="toc-number">7.</span> <span class="toc-text">结论：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原始-Dao-开发方法"><span class="toc-number"></span> <span class="toc-text">原始 Dao 开发方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路："><span class="toc-number">1.</span> <span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dao接口"><span class="toc-number">2.</span> <span class="toc-text">Dao接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dao-实现类"><span class="toc-number">3.</span> <span class="toc-text">Dao 实现类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">4.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">5.</span> <span class="toc-text">问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis-的-mapper-接口"><span class="toc-number"></span> <span class="toc-text">Mybatis 的 mapper 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路"><span class="toc-number">1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number">2.</span> <span class="toc-text">总结：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试-1"><span class="toc-number">3.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代理对象内部调用-selectOne-或者-selectList"><span class="toc-number">4.</span> <span class="toc-text">代理对象内部调用 selectOne 或者 selectList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapper接口方法参数只能有一个是否影响系统开发"><span class="toc-number">5.</span> <span class="toc-text">mapper接口方法参数只能有一个是否影响系统开发</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SqlMapConfig-xml-文件"><span class="toc-number"></span> <span class="toc-text">SqlMapConfig.xml 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#properties-属性"><span class="toc-number">1.</span> <span class="toc-text">properties 属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#settings（全局配置参数）"><span class="toc-number">2.</span> <span class="toc-text">settings（全局配置参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#typeAliases（类型别名）"><span class="toc-number">3.</span> <span class="toc-text">typeAliases（类型别名）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#typeHandlers（类型处理器）"><span class="toc-number">4.</span> <span class="toc-text">typeHandlers（类型处理器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mappers（映射器）"><span class="toc-number">5.</span> <span class="toc-text">mappers（映射器）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mapper-xml-映射文件"><span class="toc-number"></span> <span class="toc-text">Mapper.xml 映射文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输入映射"><span class="toc-number">1.</span> <span class="toc-text">输入映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出映射"><span class="toc-number">2.</span> <span class="toc-text">输出映射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#输出简单类型"><span class="toc-number">2.1.</span> <span class="toc-text">输出简单类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态-SQL"><span class="toc-number"></span> <span class="toc-text">动态 SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sql-片段"><span class="toc-number">1.</span> <span class="toc-text">Sql 片段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreach"><span class="toc-number">2.</span> <span class="toc-text">foreach</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>转载请务必注明出处，原创不易！</p>
@@ -981,11 +1010,11 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1085,11 +1114,11 @@ Mybatis 解决 jdbc 编程的问题1、  数据库链接创建、释放频繁造
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

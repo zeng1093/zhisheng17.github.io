@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20170226214020480?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170226214107072?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170226214143464?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-04-21T03:43:39.100Z">
+<meta property="og:updated_time" content="2017-06-13T10:46:40.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详细深入分析 Java ClassLoader 工作机制">
 <meta name="twitter:description" content="什么是 ClassLoader ？大家都知道，当我们写好一个 Java 程序之后，不是管是 C/S 还是 B/S 应用，都是由若干个 .class 文件组织而成的一个完整的 Java 应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的 class 文件当中，所以经常要从这个 class 文件中要调用另外一个 class 文件中的方法，如果另外一个">
@@ -198,6 +198,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是-ClassLoader-？"><span class="toc-number">1.</span> <span class="toc-text">什么是 ClassLoader ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ClassLoader-作用："><span class="toc-number">2.</span> <span class="toc-text">ClassLoader 作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、ClassLoader-类结构分析"><span class="toc-number">3.</span> <span class="toc-text">1、ClassLoader 类结构分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、ClassLoader-的等级加载机制"><span class="toc-number">4.</span> <span class="toc-text">2、ClassLoader  的等级加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Java默认提供的三个ClassLoader"><span class="toc-number">4.1.</span> <span class="toc-text">Java默认提供的三个ClassLoader</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader加载类的原理"><span class="toc-number">4.2.</span> <span class="toc-text">ClassLoader加载类的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-原理介绍"><span class="toc-number">4.2.1.</span> <span class="toc-text">1. 原理介绍</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、为什么要使用双亲委托这种模型呢？"><span class="toc-number">4.2.2.</span> <span class="toc-text">2、为什么要使用双亲委托这种模型呢？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、-但是JVM在搜索类的时候，又是如何判定两个class是相同的呢？"><span class="toc-number">4.2.3.</span> <span class="toc-text">3、 但是JVM在搜索类的时候，又是如何判定两个class是相同的呢？</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader的体系架构："><span class="toc-number">4.3.</span> <span class="toc-text">ClassLoader的体系架构：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类加载器的树状组织结构"><span class="toc-number">4.4.</span> <span class="toc-text">类加载器的树状组织结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JVM加载class文件的两种方法；"><span class="toc-number">4.5.</span> <span class="toc-text">JVM加载class文件的两种方法；</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#类加载的动态性体现："><span class="toc-number">4.6.</span> <span class="toc-text">类加载的动态性体现：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、如何加载-class-文件"><span class="toc-number">5.</span> <span class="toc-text">3、如何加载 class 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-、加载字节码到内存"><span class="toc-number">5.1.</span> <span class="toc-text">3.1 、加载字节码到内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-、验证与分析"><span class="toc-number">5.2.</span> <span class="toc-text">3.2 、验证与分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、常见加载类错误分析"><span class="toc-number">6.</span> <span class="toc-text">4、常见加载类错误分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-、-ClassNotFoundExecption"><span class="toc-number">6.1.</span> <span class="toc-text">4.1 、 ClassNotFoundExecption</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-、-NoClassDefFoundError"><span class="toc-number">6.2.</span> <span class="toc-text">4.2 、 NoClassDefFoundError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-、-UnsatisfiedLinkError"><span class="toc-number">6.3.</span> <span class="toc-text">4.3 、 UnsatisfiedLinkError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-、-ClassCastException"><span class="toc-number">6.4.</span> <span class="toc-text">4.4 、 ClassCastException</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-、-ExceptionInInitializerError"><span class="toc-number">6.5.</span> <span class="toc-text">4.5 、 ExceptionInInitializerError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-NoSuchMethodError"><span class="toc-number">6.6.</span> <span class="toc-text">4.6 NoSuchMethodError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-LinkageError"><span class="toc-number">6.7.</span> <span class="toc-text">4.7 LinkageError</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、常用的-ClassLoader-分析"><span class="toc-number">7.</span> <span class="toc-text">5、常用的 ClassLoader 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、如何实现自己的-ClassLoader"><span class="toc-number">8.</span> <span class="toc-text">6、如何实现自己的 ClassLoader</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-、文件系统类加载器"><span class="toc-number">8.1.</span> <span class="toc-text">6.1 、文件系统类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-、-网络类加载器"><span class="toc-number">8.2.</span> <span class="toc-text">6.2 、 网络类加载器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、类加载器与Web容器"><span class="toc-number">9.</span> <span class="toc-text">7、类加载器与Web容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、总结"><span class="toc-number">10.</span> <span class="toc-text">8、总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-number">11.</span> <span class="toc-text">参考资料</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="什么是-ClassLoader-？"><a href="#什么是-ClassLoader-？" class="headerlink" title="什么是 ClassLoader ？"></a>什么是 ClassLoader ？</h3><p>大家都知道，当我们写好一个 Java 程序之后，不是管是 C/S 还是 B/S 应用，都是由若干个 .class 文件组织而成的一个完整的 Java 应用程序，当程序在运行时，即会调用该程序的一个入口函数来调用系统的相关功能，而这些功能都被封装在不同的 class 文件当中，所以经常要从这个 class 文件中要调用另外一个 class 文件中的方法，如果另外一个文件不存在的，则会引发系统异常。而程序在启动的时候，并不会一次性加载程序所要用的所有class文件，而是根据程序的需要，通过Java的类加载机制（ClassLoader）来动态加载某个 class 文件到内存当中的，从而只有 class 文件被载入到了内存之后，才能被其它 class 所引用。所以 ClassLoader 就是用来动态加载 class 文件到内存当中用的。</p>
@@ -658,11 +687,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -762,11 +791,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">

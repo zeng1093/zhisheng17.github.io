@@ -19,7 +19,7 @@ Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访�
 Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访问。结果其中遇到的坑不
 是一点点啊，我差点崩溃了，其中最大的原因就是由于 Hibernate JPA 中的bu">
 <meta property="og:image" content="http://img.blog.csdn.net/20161221212949653?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdHpzXzEwNDEyMTgxMjk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-04-13T14:19:37.518Z">
+<meta property="og:updated_time" content="2017-06-13T10:44:03.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring MVC+Hibernate JPA搭建的博客系统项目中所遇到的坑">
 <meta name="twitter:description" content="项目代码地址：https://github.com/zhisheng17/springmvc最近在学习 Spring MVC ，其中在做一个简单的博客系统demo，是使用 SpringMVC 集成
@@ -191,6 +191,35 @@ Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访�
         
       </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目代码地址：https-github-com-zhisheng17-springmvc"><span class="toc-number">1.</span> <span class="toc-text">项目代码地址：https://github.com/zhisheng17/springmvc</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="项目代码地址：https-github-com-zhisheng17-springmvc"><a href="#项目代码地址：https-github-com-zhisheng17-springmvc" class="headerlink" title="项目代码地址：https://github.com/zhisheng17/springmvc"></a>项目代码地址：<a href="https://github.com/zhisheng17/springmvc" target="_blank" rel="external">https://github.com/zhisheng17/springmvc</a></h3><p>最近在学习 Spring MVC ，其中在做一个简单的博客系统demo，是使用 SpringMVC 集成</p>
@@ -549,11 +578,11 @@ Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NIO</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,11 +682,11 @@ Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访�
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
+                <a href="javascript:void(0)" class="js-tag color3">finally</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">finally</a>
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
