@@ -6,14 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Zhisheng的博客</title>
+  <title>java.sql.SQLException Field &#39;id&#39; doesn&#39;t have a default value | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/archives/page/6/index.html">
+  <meta name="description" content="1、错误描述
+在做一个电商网站项目时，使用 Mybatis + MySQL 时出现问题 Caused by: java.sql.SQLException: Field &amp;#39;id&amp;#39; doesn&amp;#39;t have a default value ，网上很多人说是 MyBatis 插入数据行 ID 没生成自增。但是我尝试好久，没解决该问题。
+2、错误原因
+后来才发现是因为创建数据库时的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java.sql.SQLException Field 'id' doesn't have a default value">
+<meta property="og:url" content="http://yoursite.com/2017/06/20/Java-error1/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
+<meta property="og:description" content="1、错误描述
+在做一个电商网站项目时，使用 Mybatis + MySQL 时出现问题 Caused by: java.sql.SQLException: Field &amp;#39;id&amp;#39; doesn&amp;#39;t have a default value ，网上很多人说是 MyBatis 插入数据行 ID 没生成自增。但是我尝试好久，没解决该问题。
+2、错误原因
+后来才发现是因为创建数据库时的">
+<meta property="og:updated_time" content="2017-06-20T07:15:22.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhisheng的博客">
+<meta name="twitter:title" content="java.sql.SQLException Field 'id' doesn't have a default value">
+<meta name="twitter:description" content="1、错误描述
+在做一个电商网站项目时，使用 Mybatis + MySQL 时出现问题 Caused by: java.sql.SQLException: Field &amp;#39;id&amp;#39; doesn&amp;#39;t have a default value ，网上很多人说是 MyBatis 插入数据行 ID 没生成自增。但是我尝试好久，没解决该问题。
+2、错误原因
+后来才发现是因为创建数据库时的">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
   
@@ -157,94 +170,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-error1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java.sql.SQLException Field &#39;id&#39; doesn&#39;t have a default value
+    </h1>
+  
+
+        
+        <a href="/2017/06/20/Java-error1/" class="archive-article-date">
+  	<time datetime="2017-06-20T07:10:47.405Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-20</time>
+</a>
+        
+      </header>
     
+
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、错误描述</p>
+<p>在做一个电商网站项目时，使用 Mybatis + MySQL 时出现问题 <code>Caused by: java.sql.SQLException: Field &#39;id&#39; doesn&#39;t have a default value</code> ，网上很多人说是 <a href="https://my.oschina.net/boonya/blog/692232" target="_blank" rel="external">MyBatis 插入数据行 ID 没生成自增</a>。但是我尝试好久，没解决该问题。</p>
+<p>2、错误原因</p>
+<p>后来才发现是因为创建数据库时的建表语句中的 id 是主键的，但是在插入的过程中，没有给予数值，并且没有让 id 自增。</p>
+<p>3、解决办法</p>
+<p>修改数据库表中的id，让其自增（在插入的过程中，不插入id数据时）。</p>
+<p>（我是直接将整个数据库都导出来，然后在每个表的 id 后面加上一个 <code>auto_increment</code>）, 如下 ：<br><a id="more"></a><br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`d_user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> auto_increment,</div><div class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`password`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`zip`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`address`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`phone`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`email`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:54:40.743Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统/">Spring MVC + Hibernate JPA + Bootstrap 搭建的博客系统 Demo</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Bootstrap</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring MVC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Hibernate JPA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/Java连接Oracle数据库的三种连接方式/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:54:21.861Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/Java连接Oracle数据库的三种连接方式/">Java连接Oracle数据库的三种连接方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -252,208 +248,112 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aQW7kMAwEwPn/pyfXAMlou0VnAcul02JiQyofuKTI1yte72/r+y/rv/5cP99d73LxwsDAuC3jvVz5Bslbe+D1MxgYGM9hfDrWOry223/acb3X+mwYGBgYSSI4D7jJvhgYGBgtIy8+/5HSLZ/BwMDAaFO9ZMuk4EyK4T+sxTEwMG7IyG/d//+//6S/gYGBcSvGu1ztNdy14fXjqTAwMI5m5AEuKUHbgYmiQE3Og4GBcTRjLwjmz09C88UlKwYGxg0Z69fyFuZeiNwb4Pjl/BgYGEcz5u3JeWq4N2yBgYHxNMa8dGwDdJvdFaMbGBgYhzLyq7RJwtf+UtfiGBgYRzPaIrYtZfNnkg8aJY4YGBgHMa698ErSuLYVGn1EDAyMBzCSVCw/0B5s791Xnm9iYGDcnJEnbW1Z2x43+TR1ZwMDA+PmjPnFWdvObFukxbAFBgbGoYy8uZiH0fz3/IY/mhbBwMA4lDEJi3tpZZsOFgEaAwPjaMYkvCYhNW8zTFqqGBgYZzMmA2E5qR0Oq0fWMDAwHsBoi9L8QO2wVzsuhoGB8TRGG/7ypuOkLRqRMDAwDmW8y9W2KlvMZqDHwMA4mtG2Evcw83GNejgMAwPjOEbbBti7Yrs24NY9DQwMjCMY88A3GY/I/wf4+CQGBgZG/MxkvCw/1eawBQYGxmMYdQU8uJLLPwcGBsYTGEkR26aAeZuhHa3AwMB4GqMtHfdGJdr25FUjGhgYGDdnfAG0ZSLgGOw3kgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/java读取文件/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:54:05.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/java读取文件/">Java读取文件</a>
-    </h1>
+  
+    <a href="/2017/06/17/blog-talk/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建一个博客项目后的碎碎念</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文件</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="java.sql.SQLException Field &#39;id&#39; doesn&#39;t have a default value"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/Bootstrap入门需掌握的知识点（二）/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:53:39.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/Bootstrap入门需掌握的知识点（二）/">Bootstrap入门需掌握的知识点（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Bootstrap</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/Bootstrap入门需掌握的知识点（一）/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:53:23.615Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/Bootstrap入门需掌握的知识点（一）/">Bootstrap入门需掌握的知识点（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Bootstrap</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/【字符串】字符串逆序/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:51:42.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/【字符串】字符串逆序/">字符串</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/5/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/7/">Next &raquo;</a>
-    </nav>
-  
-
 
           </div>
         </div>
@@ -483,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
