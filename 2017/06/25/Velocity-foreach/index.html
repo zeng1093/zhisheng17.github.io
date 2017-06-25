@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 数据结构 | Zhisheng的博客</title>
+  <title>Velocity 循环指令一种好的解决方法 | Zhisheng的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Zhisheng的博客">
-<meta property="og:url" content="http://yoursite.com/tags/数据结构/index.html">
+  <meta name="description" content="前提前台的数据经常是由需要通过 foreach 循环获取。
+好的解决方案：（拿我最近做的一个项目做例子）购物商城左边的导航栏，商品大分类和小分类（Category）
+1、在 model 包下创建一个 ViewObject 类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Velocity 循环指令一种好的解决方法">
+<meta property="og:url" content="http://yoursite.com/2017/06/25/Velocity-foreach/index.html">
 <meta property="og:site_name" content="Zhisheng的博客">
+<meta property="og:description" content="前提前台的数据经常是由需要通过 foreach 循环获取。
+好的解决方案：（拿我最近做的一个项目做例子）购物商城左边的导航栏，商品大分类和小分类（Category）
+1、在 model 包下创建一个 ViewObject 类">
+<meta property="og:updated_time" content="2017-06-25T05:26:14.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhisheng的博客">
+<meta name="twitter:title" content="Velocity 循环指令一种好的解决方法">
+<meta name="twitter:description" content="前提前台的数据经常是由需要通过 foreach 循环获取。
+好的解决方案：（拿我最近做的一个项目做例子）购物商城左边的导航栏，商品大分类和小分类（Category）
+1、在 model 包下创建一个 ViewObject 类">
   
     <link rel="alternative" href="/atom.xml" title="Zhisheng的博客" type="application/atom+xml">
   
@@ -157,207 +167,219 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Velocity-foreach" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Velocity 循环指令一种好的解决方法
+    </h1>
+  
+
+        
+        <a href="/2017/06/25/Velocity-foreach/" class="archive-article-date">
+  	<time datetime="2017-06-25T05:01:16.352Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-25</time>
+</a>
+        
+      </header>
     
+
+    <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前提"><span class="toc-number">1.</span> <span class="toc-text">前提</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#好的解决方案：（拿我最近做的一个项目做例子）"><span class="toc-number">2.</span> <span class="toc-text">好的解决方案：（拿我最近做的一个项目做例子）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、在-model-包下创建一个-ViewObject-类"><span class="toc-number">2.1.</span> <span class="toc-text">1、在 model 包下创建一个 ViewObject 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、在-controller-包下创建个-BaseController-类"><span class="toc-number">2.2.</span> <span class="toc-text">2、在 controller 包下创建个 BaseController 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、在-IndexController-类下，需要继承-BaseController-java-类"><span class="toc-number">2.3.</span> <span class="toc-text">3、在 IndexController 类下，需要继承 BaseController.java 类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、抽离导航部分的代码-left-html"><span class="toc-number">2.4.</span> <span class="toc-text">4、抽离导航部分的代码 left.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、首页中相应的位置引入-left-html"><span class="toc-number">2.5.</span> <span class="toc-text">5、首页中相应的位置引入 left.html</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+    function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+    function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+      
+<!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>前台的数据经常是由需要通过 foreach 循环获取。</p>
+<h3 id="好的解决方案：（拿我最近做的一个项目做例子）"><a href="#好的解决方案：（拿我最近做的一个项目做例子）" class="headerlink" title="好的解决方案：（拿我最近做的一个项目做例子）"></a>好的解决方案：（拿我最近做的一个项目做例子）</h3><p>购物商城左边的导航栏，商品大分类和小分类（Category）</p>
+<h4 id="1、在-model-包下创建一个-ViewObject-类"><a href="#1、在-model-包下创建一个-ViewObject-类" class="headerlink" title="1、在 model 包下创建一个 ViewObject 类"></a>1、在 model 包下创建一个 ViewObject 类</h4><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class ViewObject</div><div class="line">&#123;</div><div class="line">    private Map&lt;String, Object&gt; objs = new HashMap&lt;&gt;();</div><div class="line">    public void set(String key, Object value) &#123;</div><div class="line">        objs.put(key, value);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Object get(String key) &#123;</div><div class="line">        return objs.get(key);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2、在-controller-包下创建个-BaseController-类"><a href="#2、在-controller-包下创建个-BaseController-类" class="headerlink" title="2、在 controller 包下创建个 BaseController 类"></a>2、在 controller 包下创建个 BaseController 类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 在每个页面显示图书大分类，抽离出来</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;ViewObject&gt; <span class="title">selectAllCategory</span><span class="params">()</span> </span>&#123;</div><div class="line">        List&lt;Category&gt; categories = categoryService.selectAllCategory();</div><div class="line">        List&lt;ViewObject&gt; vos = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (Category category : categories) &#123;</div><div class="line">            ViewObject vo = <span class="keyword">new</span> ViewObject();</div><div class="line">            vo.set(<span class="string">"category"</span>, category);</div><div class="line">            vo.set(<span class="string">"id"</span>, category.getId());</div><div class="line">            <span class="comment">//System.out.println("category 中的 id 是 "+category.getId());</span></div><div class="line">            vos.add(vo);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> vos;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 获取图书的小分类，在这里将小分类中的大分类id查找出来，保存在 cds.id 中，</div><div class="line">     * 然后在模板引擎中通过将 vos.id 和 cds.id 相比较。然后如果相同的话，就取出来放在对应的大分类下</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;ViewObject&gt; <span class="title">selectAllCategoryDetail</span><span class="params">()</span> </span>&#123;</div><div class="line">        List&lt;CategoryDetail&gt; categoryDetails  = categoryDetailService.selectAllCategoryDetail();</div><div class="line">        List&lt;ViewObject&gt; cds = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (CategoryDetail categoryDetail : categoryDetails) &#123;</div><div class="line">            ViewObject vo = <span class="keyword">new</span> ViewObject();</div><div class="line">            vo.set(<span class="string">"categoryDetail"</span>, categoryDetail);</div><div class="line">            <span class="comment">//System.out.println("categoryDetail 中的 categoryDetail  id  =" + categoryDetail.getId() + "category id = " + categoryDetail.getCategory_id() + " name = " + categoryDetail.getName());</span></div><div class="line">            vo.set(<span class="string">"id"</span>, categoryDetail.getCategory_id());</div><div class="line">            cds.add(vo);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> cds;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="3、在-IndexController-类下，需要继承-BaseController-java-类"><a href="#3、在-IndexController-类下，需要继承-BaseController-java-类" class="headerlink" title="3、在 IndexController 类下，需要继承 BaseController.java 类"></a>3、在 IndexController 类下，需要继承 BaseController.java 类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 返回首页</div><div class="line">     * <span class="doctag">@param</span> model</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@RequestMapping</span>(path = &#123;<span class="string">"/"</span>, <span class="string">"/index"</span>&#125;)</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(Model model)</span> </span>&#123;</div><div class="line">        <span class="comment">//模板引擎设置图书分类左边导航栏</span></div><div class="line">        model.addAttribute(<span class="string">"vos"</span>, selectAllCategory());</div><div class="line">        model.addAttribute(<span class="string">"cds"</span>, selectAllCategoryDetail());</div><div class="line">      <span class="comment">//返回主页</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="4、抽离导航部分的代码-left-html"><a href="#4、抽离导航部分的代码-left-html" class="headerlink" title="4、抽离导航部分的代码 left.html"></a>4、抽离导航部分的代码 left.html</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--左边图书分类导航栏--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c3_b1_left"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">        #foreach($vo in $vos)</div><div class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>$!&#123;vo.category.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">                #foreach($cd in $cds)</div><div class="line">                #if($vo.id == $cd.id)</div><div class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/list"</span>&gt;</span>$!&#123;cd.categoryDetail.name&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">                #end</div><div class="line">                #end</div><div class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">        #end</div><div class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="5、首页中相应的位置引入-left-html"><a href="#5、首页中相应的位置引入-left-html" class="headerlink" title="5、首页中相应的位置引入 left.html"></a>5、首页中相应的位置引入 left.html</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#parse("left.html")</div></pre></td></tr></table></figure>
+<p>这样就可以解决问题了，可是有时候我们需要控制循环的个数，因为我们网页端可能只需要特定的数据量</p>
+<p>那么就需要中断 foreach，可以使用 #break 指令终止循环</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#foreach( $vo in $vos )</div><div class="line">    #if( $foreach.count &gt; 5 )</div><div class="line">        #break</div><div class="line">    #end</div><div class="line">    $!&#123;vo.customer.Name&#125;</div><div class="line">#end</div></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://my.oschina.net/u/2000201/blog/539217" target="_blank" rel="external">Velocity入门指南——第七章 循环指令 </a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你支持我买服务器！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/循环队列的相关条件和公式/" class="archive-article-date">
-  	<time datetime="2017-03-28T11:00:11.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/循环队列的相关条件和公式/">循环队列的相关条件和公式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">循环队列</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Velocity</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQW7DMAwEwPz/0+m1RWB5SSkFLI1PQdrYHB8IiuTrFV/v4Lr6/9/ffH4e/2rxhYGB8VhGElwe7udfr54yfnoeGwYGxjmMJIhxcONwx0/spWYMDAyM8e3Gxd84oc88FwMDA2M+CebpOE/fGBgYGPkhtnywbL2Cr5/FMTAwHsjIu+7///kr8w0MDIxHMd7FK2n6zxSLvQsDA2NvRp7g8pbZ+G6rEi4GBsZpjJlAe8kxByTpHgMDY2/GzJpXstSVL2pUwX++wcDAOICRBzeTRqtNtORXGBgYJzDWrmdVW3V5Io6iwsDA2JTxjVSbH4/ztbCbZ2FgYBzGyJG9QULewis03TAwMLZmrA06T5q9Xa/CCBMDA2MjRv7ImdFmEmJ+/8ttEQwMjK0Z1cSXB1FtqPVKSQwMjHMYvWIuX84o16q9nREMDIxNGVVMNfkWUmeLh4GBcQKjOhKojhirryMvE2/mGxgYGFsw8kb/qq2G3tG3OWbAwMDYiJGXdKuGATNH3MvXioGBcQAjL9p6KxHJqDJfyIgGmRgYGNsxqgHlybpav1WHqRgYGHszeosUvbWMarmZN/IwMDD2Zswnu16zLJ88YmBgYPSOmtUgqoVgHkPzTWNgYDyWkSe+HqM3TsijxcDAwKgeYntD0GR1Y3HCxcDAOJiRr1bkd775LQYGxgGMvJVWHWcm4VaPrBgYGKcxqkfHaorsFZHzVAwMjC0YPwUnQc82x54OAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/中缀表达式转换成前缀和后缀表达式这类题目的超实用解题技巧/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:58:16.670Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/中缀表达式转换成前缀和后缀表达式这类题目的超实用解题技巧/">中缀表达式转换成前缀和后缀表达式这类题目的超实用解题技巧</a>
-    </h1>
+  
+    <a href="/2017/06/23/AJAX/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AJAX 学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">表达式</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="Velocity 循环指令一种好的解决方法"  style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cysWCg9Ij',
+    conf = '7f51baf245f3217589bb3b4ba8d8c691';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/【字符串】字符串逆序/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:51:42.735Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/【字符串】字符串逆序/">字符串</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/28/【字符串】判断两字符串是否互为旋转词？/" class="archive-article-date">
-  	<time datetime="2017-03-28T10:49:25.536Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/28/【字符串】判断两字符串是否互为旋转词？/">【字符串】判断两字符串是否互为旋转词？</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">旋转词</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
 
           </div>
         </div>
@@ -387,9 +409,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
